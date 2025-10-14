@@ -1,0 +1,15 @@
+com.sun.jmx.remote.internal.rmi.ProxyRef
+com.sun.jmx.remote.internal.rmi.RMIExporter
+com.sun.jmx.remote.protocol.rmi.ClientProvider
+com.sun.jmx.remote.protocol.rmi.ServerProvider
+javax.management.remote.rmi.RMIConnection
+javax.management.remote.rmi.RMIConnectionImpl
+javax.management.remote.rmi.RMIConnectionImpl_Stub
+javax.management.remote.rmi.RMIConnector
+javax.management.remote.rmi.RMIConnector$Util
+javax.management.remote.rmi.RMIConnectorServer
+javax.management.remote.rmi.RMIIIOPServerImpl
+javax.management.remote.rmi.RMIJRMPServerImpl
+javax.management.remote.rmi.RMIServer
+javax.management.remote.rmi.RMIServerImpl
+javax.management.remote.rmi.RMIServerImpl_Stub

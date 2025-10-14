@@ -1,0 +1,3 @@
+com.sun.jmx.remote.internal.rmi
+com.sun.jmx.remote.protocol.rmi
+javax.management.remote.rmi
