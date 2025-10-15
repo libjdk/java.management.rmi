@@ -69,7 +69,9 @@ install(
 	DESTINATION "${JCPP_INSTALL_PATH}"
 )
 
-install(
-	FILES "dependencies.txt"
-	DESTINATION "${JCPP_INSTALL_PATH}"
-)
+if(INSTALL_TO_REPO)
+	install(
+		FILES "dependencies.txt"
+		DESTINATION "${JCPP_INSTALL_PATH}"
+	)
+endif()
