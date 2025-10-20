@@ -52,6 +52,7 @@ void ClientProvider::init$() {
 }
 
 $JMXConnector* ClientProvider::newJMXConnector($JMXServiceURL* serviceURL, $Map* environment) {
+	$useLocalCurrentObjectStackCache();
 	if (!$nc($($nc(serviceURL)->getProtocol()))->equals("rmi"_s)) {
 		$throwNew($MalformedURLException, $$str({"Protocol not rmi: "_s, $(serviceURL->getProtocol())}));
 	}

@@ -136,6 +136,7 @@ void RMIConnector$RemoteMBeanServerConnection::init$($RMIConnector* this$0, $Sub
 }
 
 $ObjectInstance* RMIConnector$RemoteMBeanServerConnection::createMBean($String* className, $ObjectName* name) {
+	$useLocalCurrentObjectStackCache();
 	$init($RMIConnector);
 	if ($nc($RMIConnector::logger)->debugOn()) {
 		$nc($RMIConnector::logger)->debug("createMBean(String,ObjectName)"_s, $$str({"className="_s, className, ", name="_s, name}));
@@ -173,6 +174,7 @@ $ObjectInstance* RMIConnector$RemoteMBeanServerConnection::createMBean($String* 
 }
 
 $ObjectInstance* RMIConnector$RemoteMBeanServerConnection::createMBean($String* className, $ObjectName* name, $ObjectName* loaderName) {
+	$useLocalCurrentObjectStackCache();
 	$init($RMIConnector);
 	if ($nc($RMIConnector::logger)->debugOn()) {
 		$nc($RMIConnector::logger)->debug("createMBean(String,ObjectName,ObjectName)"_s, $$str({"className="_s, className, ", name="_s, name, ", loaderName="_s, loaderName, ")"_s}));
@@ -210,6 +212,7 @@ $ObjectInstance* RMIConnector$RemoteMBeanServerConnection::createMBean($String* 
 }
 
 $ObjectInstance* RMIConnector$RemoteMBeanServerConnection::createMBean($String* className, $ObjectName* name, $ObjectArray* params, $StringArray* signature) {
+	$useLocalCurrentObjectStackCache();
 	$init($RMIConnector);
 	if ($nc($RMIConnector::logger)->debugOn()) {
 		$var($String, var$0, $$str({"className="_s, className, ", name="_s, name, ", signature="_s}));
@@ -249,6 +252,7 @@ $ObjectInstance* RMIConnector$RemoteMBeanServerConnection::createMBean($String* 
 }
 
 $ObjectInstance* RMIConnector$RemoteMBeanServerConnection::createMBean($String* className, $ObjectName* name, $ObjectName* loaderName, $ObjectArray* params, $StringArray* signature) {
+	$useLocalCurrentObjectStackCache();
 	$init($RMIConnector);
 	if ($nc($RMIConnector::logger)->debugOn()) {
 		$var($String, var$0, $$str({"className="_s, className, ", name="_s, name, ", loaderName="_s, loaderName, ", signature="_s}));
@@ -288,6 +292,7 @@ $ObjectInstance* RMIConnector$RemoteMBeanServerConnection::createMBean($String* 
 }
 
 void RMIConnector$RemoteMBeanServerConnection::unregisterMBean($ObjectName* name) {
+	$useLocalCurrentObjectStackCache();
 	$init($RMIConnector);
 	if ($nc($RMIConnector::logger)->debugOn()) {
 		$nc($RMIConnector::logger)->debug("unregisterMBean"_s, $$str({"name="_s, name}));
@@ -315,6 +320,7 @@ void RMIConnector$RemoteMBeanServerConnection::unregisterMBean($ObjectName* name
 }
 
 $ObjectInstance* RMIConnector$RemoteMBeanServerConnection::getObjectInstance($ObjectName* name) {
+	$useLocalCurrentObjectStackCache();
 	$init($RMIConnector);
 	if ($nc($RMIConnector::logger)->debugOn()) {
 		$nc($RMIConnector::logger)->debug("getObjectInstance"_s, $$str({"name="_s, name}));
@@ -352,6 +358,7 @@ $ObjectInstance* RMIConnector$RemoteMBeanServerConnection::getObjectInstance($Ob
 }
 
 $Set* RMIConnector$RemoteMBeanServerConnection::queryMBeans($ObjectName* name, $QueryExp* query) {
+	$useLocalCurrentObjectStackCache();
 	$init($RMIConnector);
 	if ($nc($RMIConnector::logger)->debugOn()) {
 		$nc($RMIConnector::logger)->debug("queryMBeans"_s, $$str({"name="_s, name, ", query="_s, query}));
@@ -390,6 +397,7 @@ $Set* RMIConnector$RemoteMBeanServerConnection::queryMBeans($ObjectName* name, $
 }
 
 $Set* RMIConnector$RemoteMBeanServerConnection::queryNames($ObjectName* name, $QueryExp* query) {
+	$useLocalCurrentObjectStackCache();
 	$init($RMIConnector);
 	if ($nc($RMIConnector::logger)->debugOn()) {
 		$nc($RMIConnector::logger)->debug("queryNames"_s, $$str({"name="_s, name, ", query="_s, query}));
@@ -428,6 +436,7 @@ $Set* RMIConnector$RemoteMBeanServerConnection::queryNames($ObjectName* name, $Q
 }
 
 bool RMIConnector$RemoteMBeanServerConnection::isRegistered($ObjectName* name) {
+	$useLocalCurrentObjectStackCache();
 	$init($RMIConnector);
 	if ($nc($RMIConnector::logger)->debugOn()) {
 		$nc($RMIConnector::logger)->debug("isRegistered"_s, $$str({"name="_s, name}));
@@ -465,6 +474,7 @@ bool RMIConnector$RemoteMBeanServerConnection::isRegistered($ObjectName* name) {
 }
 
 $Integer* RMIConnector$RemoteMBeanServerConnection::getMBeanCount() {
+	$useLocalCurrentObjectStackCache();
 	$init($RMIConnector);
 	if ($nc($RMIConnector::logger)->debugOn()) {
 		$nc($RMIConnector::logger)->debug("getMBeanCount"_s, ""_s);
@@ -502,6 +512,7 @@ $Integer* RMIConnector$RemoteMBeanServerConnection::getMBeanCount() {
 }
 
 $Object* RMIConnector$RemoteMBeanServerConnection::getAttribute($ObjectName* name, $String* attribute) {
+	$useLocalCurrentObjectStackCache();
 	$init($RMIConnector);
 	if ($nc($RMIConnector::logger)->debugOn()) {
 		$nc($RMIConnector::logger)->debug("getAttribute"_s, $$str({"name="_s, name, ", attribute="_s, attribute}));
@@ -539,6 +550,7 @@ $Object* RMIConnector$RemoteMBeanServerConnection::getAttribute($ObjectName* nam
 }
 
 $AttributeList* RMIConnector$RemoteMBeanServerConnection::getAttributes($ObjectName* name, $StringArray* attributes) {
+	$useLocalCurrentObjectStackCache();
 	$init($RMIConnector);
 	if ($nc($RMIConnector::logger)->debugOn()) {
 		$var($String, var$0, $$str({"name="_s, name, ", attributes="_s}));
@@ -577,6 +589,7 @@ $AttributeList* RMIConnector$RemoteMBeanServerConnection::getAttributes($ObjectN
 }
 
 void RMIConnector$RemoteMBeanServerConnection::setAttribute($ObjectName* name, $Attribute* attribute) {
+	$useLocalCurrentObjectStackCache();
 	$init($RMIConnector);
 	if ($nc($RMIConnector::logger)->debugOn()) {
 		$var($String, var$0, $$str({"name="_s, name, ", attribute name="_s}));
@@ -606,6 +619,7 @@ void RMIConnector$RemoteMBeanServerConnection::setAttribute($ObjectName* name, $
 }
 
 $AttributeList* RMIConnector$RemoteMBeanServerConnection::setAttributes($ObjectName* name, $AttributeList* attributes) {
+	$useLocalCurrentObjectStackCache();
 	$init($RMIConnector);
 	if ($nc($RMIConnector::logger)->debugOn()) {
 		$var($String, var$0, $$str({"name="_s, name, ", attribute names="_s}));
@@ -645,6 +659,7 @@ $AttributeList* RMIConnector$RemoteMBeanServerConnection::setAttributes($ObjectN
 }
 
 $Object* RMIConnector$RemoteMBeanServerConnection::invoke($ObjectName* name, $String* operationName, $ObjectArray* params, $StringArray* signature) {
+	$useLocalCurrentObjectStackCache();
 	$init($RMIConnector);
 	if ($nc($RMIConnector::logger)->debugOn()) {
 		$var($String, var$0, $$str({"name="_s, name, ", operationName="_s, operationName, ", signature="_s}));
@@ -684,6 +699,7 @@ $Object* RMIConnector$RemoteMBeanServerConnection::invoke($ObjectName* name, $St
 }
 
 $String* RMIConnector$RemoteMBeanServerConnection::getDefaultDomain() {
+	$useLocalCurrentObjectStackCache();
 	$init($RMIConnector);
 	if ($nc($RMIConnector::logger)->debugOn()) {
 		$nc($RMIConnector::logger)->debug("getDefaultDomain"_s, ""_s);
@@ -721,6 +737,7 @@ $String* RMIConnector$RemoteMBeanServerConnection::getDefaultDomain() {
 }
 
 $StringArray* RMIConnector$RemoteMBeanServerConnection::getDomains() {
+	$useLocalCurrentObjectStackCache();
 	$init($RMIConnector);
 	if ($nc($RMIConnector::logger)->debugOn()) {
 		$nc($RMIConnector::logger)->debug("getDomains"_s, ""_s);
@@ -758,6 +775,7 @@ $StringArray* RMIConnector$RemoteMBeanServerConnection::getDomains() {
 }
 
 $MBeanInfo* RMIConnector$RemoteMBeanServerConnection::getMBeanInfo($ObjectName* name) {
+	$useLocalCurrentObjectStackCache();
 	$init($RMIConnector);
 	if ($nc($RMIConnector::logger)->debugOn()) {
 		$nc($RMIConnector::logger)->debug("getMBeanInfo"_s, $$str({"name="_s, name}));
@@ -795,6 +813,7 @@ $MBeanInfo* RMIConnector$RemoteMBeanServerConnection::getMBeanInfo($ObjectName* 
 }
 
 bool RMIConnector$RemoteMBeanServerConnection::isInstanceOf($ObjectName* name, $String* className) {
+	$useLocalCurrentObjectStackCache();
 	$init($RMIConnector);
 	if ($nc($RMIConnector::logger)->debugOn()) {
 		$nc($RMIConnector::logger)->debug("isInstanceOf"_s, $$str({"name="_s, name, ", className="_s, className}));
@@ -832,6 +851,7 @@ bool RMIConnector$RemoteMBeanServerConnection::isInstanceOf($ObjectName* name, $
 }
 
 void RMIConnector$RemoteMBeanServerConnection::addNotificationListener($ObjectName* name, $ObjectName* listener, $NotificationFilter* filter, Object$* handback) {
+	$useLocalCurrentObjectStackCache();
 	$init($RMIConnector);
 	if ($nc($RMIConnector::logger)->debugOn()) {
 		$nc($RMIConnector::logger)->debug("addNotificationListener(ObjectName,ObjectName,NotificationFilter,Object)"_s, $$str({"name="_s, name, ", listener="_s, listener, ", filter="_s, filter, ", handback="_s, handback}));
@@ -861,6 +881,7 @@ void RMIConnector$RemoteMBeanServerConnection::addNotificationListener($ObjectNa
 }
 
 void RMIConnector$RemoteMBeanServerConnection::removeNotificationListener($ObjectName* name, $ObjectName* listener) {
+	$useLocalCurrentObjectStackCache();
 	$init($RMIConnector);
 	if ($nc($RMIConnector::logger)->debugOn()) {
 		$nc($RMIConnector::logger)->debug("removeNotificationListener(ObjectName,ObjectName)"_s, $$str({"name="_s, name, ", listener="_s, listener}));
@@ -888,6 +909,7 @@ void RMIConnector$RemoteMBeanServerConnection::removeNotificationListener($Objec
 }
 
 void RMIConnector$RemoteMBeanServerConnection::removeNotificationListener($ObjectName* name, $ObjectName* listener, $NotificationFilter* filter, Object$* handback) {
+	$useLocalCurrentObjectStackCache();
 	$init($RMIConnector);
 	if ($nc($RMIConnector::logger)->debugOn()) {
 		$nc($RMIConnector::logger)->debug("removeNotificationListener(ObjectName,ObjectName,NotificationFilter,Object)"_s, $$str({"name="_s, name, ", listener="_s, listener, ", filter="_s, filter, ", handback="_s, handback}));
@@ -917,6 +939,7 @@ void RMIConnector$RemoteMBeanServerConnection::removeNotificationListener($Objec
 }
 
 void RMIConnector$RemoteMBeanServerConnection::addNotificationListener($ObjectName* name, $NotificationListener* listener, $NotificationFilter* filter, Object$* handback) {
+	$useLocalCurrentObjectStackCache();
 	$init($RMIConnector);
 	bool debug = $nc($RMIConnector::logger)->debugOn();
 	if (debug) {
@@ -927,6 +950,7 @@ void RMIConnector$RemoteMBeanServerConnection::addNotificationListener($ObjectNa
 }
 
 void RMIConnector$RemoteMBeanServerConnection::removeNotificationListener($ObjectName* name, $NotificationListener* listener) {
+	$useLocalCurrentObjectStackCache();
 	$init($RMIConnector);
 	bool debug = $nc($RMIConnector::logger)->debugOn();
 	if (debug) {
@@ -960,6 +984,7 @@ void RMIConnector$RemoteMBeanServerConnection::removeNotificationListener($Objec
 }
 
 void RMIConnector$RemoteMBeanServerConnection::removeNotificationListener($ObjectName* name, $NotificationListener* listener, $NotificationFilter* filter, Object$* handback) {
+	$useLocalCurrentObjectStackCache();
 	$init($RMIConnector);
 	bool debug = $nc($RMIConnector::logger)->debugOn();
 	if (debug) {

@@ -105,6 +105,7 @@ void RMIConnector$1::init$($bytes* val$pRefByteCode) {
 }
 
 $Object* RMIConnector$1::run() {
+	$useLocalCurrentObjectStackCache();
 	$beforeCallerSensitive();
 	$load($RMIConnector);
 	$Class* thisClass = $RMIConnector::class$;

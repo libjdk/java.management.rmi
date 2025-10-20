@@ -54,6 +54,7 @@ void ServerProvider::init$() {
 }
 
 $JMXConnectorServer* ServerProvider::newJMXConnectorServer($JMXServiceURL* serviceURL, $Map* environment, $MBeanServer* mbeanServer) {
+	$useLocalCurrentObjectStackCache();
 	if (!$nc($($nc(serviceURL)->getProtocol()))->equals("rmi"_s)) {
 		$throwNew($MalformedURLException, $$str({"Protocol not rmi: "_s, $(serviceURL->getProtocol())}));
 	}

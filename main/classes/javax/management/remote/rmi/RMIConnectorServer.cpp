@@ -194,6 +194,7 @@ void RMIConnectorServer::init$($JMXServiceURL* url, $Map* environment, $MBeanSer
 }
 
 void RMIConnectorServer::init$($JMXServiceURL* url, $Map* environment, $RMIServerImpl* rmiServerImpl, $MBeanServer* mbeanServer) {
+	$useLocalCurrentObjectStackCache();
 	$JMXConnectorServer::init$(mbeanServer);
 	$set(this, defaultClassLoader, nullptr);
 	this->state = RMIConnectorServer::CREATED;
@@ -225,6 +226,7 @@ void RMIConnectorServer::init$($JMXServiceURL* url, $Map* environment, $RMIServe
 }
 
 $JMXConnector* RMIConnectorServer::toJMXConnector($Map* env) {
+	$useLocalCurrentObjectStackCache();
 	if (!isActive()) {
 		$throwNew($IllegalStateException, "Connector is not active"_s);
 	}
@@ -240,6 +242,7 @@ $JMXConnector* RMIConnectorServer::toJMXConnector($Map* env) {
 
 void RMIConnectorServer::start() {
 	$synchronized(this) {
+		$useLocalCurrentObjectStackCache();
 		bool tracing = $nc(RMIConnectorServer::logger)->traceOn();
 		if (this->state == RMIConnectorServer::STARTED) {
 			if (tracing) {
@@ -354,6 +357,7 @@ void RMIConnectorServer::start() {
 }
 
 void RMIConnectorServer::stop() {
+	$useLocalCurrentObjectStackCache();
 	bool tracing = $nc(RMIConnectorServer::logger)->traceOn();
 	$synchronized(this) {
 		if (this->state == RMIConnectorServer::STOPPED) {
@@ -482,6 +486,7 @@ $RMIServerImpl* RMIConnectorServer::newServer() {
 }
 
 void RMIConnectorServer::encodeStubInAddress($RMIServer* rmiServer, $Map* attributes) {
+	$useLocalCurrentObjectStackCache();
 	$var($String, protocol, nullptr);
 	$var($String, host, nullptr);
 	int32_t port = 0;
@@ -505,6 +510,7 @@ $String* RMIConnectorServer::encodeStub($RMIServer* rmiServer, $Map* env) {
 
 $String* RMIConnectorServer::encodeJRMPStub($RMIServer* rmiServer, $Map* env) {
 	$init(RMIConnectorServer);
+	$useLocalCurrentObjectStackCache();
 	$var($ByteArrayOutputStream, bout, $new($ByteArrayOutputStream));
 	$var($ObjectOutputStream, oout, $new($ObjectOutputStream, bout));
 	oout->writeObject(rmiServer);
@@ -520,6 +526,7 @@ $RMIServer* RMIConnectorServer::objectToBind($RMIServerImpl* rmiServer, $Map* en
 
 $RMIServerImpl* RMIConnectorServer::newJRMPServer($Map* env, int32_t port) {
 	$init(RMIConnectorServer);
+	$useLocalCurrentObjectStackCache();
 	$var($RMIClientSocketFactory, csf, $cast($RMIClientSocketFactory, $nc(env)->get(RMIConnectorServer::RMI_CLIENT_SOCKET_FACTORY_ATTRIBUTE)));
 	$var($RMIServerSocketFactory, ssf, $cast($RMIServerSocketFactory, env->get(RMIConnectorServer::RMI_SERVER_SOCKET_FACTORY_ATTRIBUTE)));
 	return $new($RMIJRMPServerImpl, port, csf, ssf, env);

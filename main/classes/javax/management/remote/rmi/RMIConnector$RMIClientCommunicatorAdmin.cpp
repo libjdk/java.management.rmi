@@ -134,6 +134,7 @@ void RMIConnector$RMIClientCommunicatorAdmin::init$($RMIConnector* this$0, int64
 }
 
 void RMIConnector$RMIClientCommunicatorAdmin::gotIOException($IOException* ioe) {
+	$useLocalCurrentObjectStackCache();
 	if ($instanceOf($NoSuchObjectException, ioe)) {
 		$ClientCommunicatorAdmin::gotIOException(ioe);
 		return;
@@ -174,6 +175,7 @@ void RMIConnector$RMIClientCommunicatorAdmin::gotIOException($IOException* ioe) 
 }
 
 void RMIConnector$RMIClientCommunicatorAdmin::reconnectNotificationListeners($ClientListenerInfoArray* old) {
+	$useLocalCurrentObjectStackCache();
 	int32_t len = $nc(old)->length;
 	int32_t i = 0;
 	$var($ClientListenerInfoArray, clis, $new($ClientListenerInfoArray, len));
@@ -229,6 +231,7 @@ void RMIConnector$RMIClientCommunicatorAdmin::checkConnection() {
 }
 
 void RMIConnector$RMIClientCommunicatorAdmin::doStart() {
+	$useLocalCurrentObjectStackCache();
 	$var($RMIServer, stub, nullptr);
 	try {
 		$assign(stub, (this->this$0->rmiServer != nullptr) ? this->this$0->rmiServer : this->this$0->findRMIServer(this->this$0->jmxServiceURL, this->this$0->env));
@@ -249,6 +252,7 @@ void RMIConnector$RMIClientCommunicatorAdmin::doStart() {
 }
 
 void RMIConnector$RMIClientCommunicatorAdmin::doStop() {
+	$useLocalCurrentObjectStackCache();
 	try {
 		this->this$0->close();
 	} catch ($IOException&) {

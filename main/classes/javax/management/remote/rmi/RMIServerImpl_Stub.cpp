@@ -108,6 +108,7 @@ void RMIServerImpl_Stub::init$($RemoteRef* ref) {
 }
 
 $String* RMIServerImpl_Stub::getVersion() {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($Object, $result, $nc(this->ref)->invoke(static_cast<$Remote*>(static_cast<$RemoteObject*>(static_cast<$RemoteStub*>(this))), RMIServerImpl_Stub::$method_getVersion_0, nullptr, 0x8FDA2350C701988D));
 		return ($cast($String, $result));
@@ -125,6 +126,7 @@ $String* RMIServerImpl_Stub::getVersion() {
 }
 
 $RMIConnection* RMIServerImpl_Stub::newClient(Object$* $param_Object_1) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($Object, $result, $nc(this->ref)->invoke(static_cast<$Remote*>(static_cast<$RemoteObject*>(static_cast<$RemoteStub*>(this))), RMIServerImpl_Stub::$method_newClient_1, $$new($ObjectArray, {$param_Object_1}), 0xF0E074EAAD0CAEA8));
 		return ($cast($RMIConnection, $result));
@@ -142,6 +144,7 @@ $RMIConnection* RMIServerImpl_Stub::newClient(Object$* $param_Object_1) {
 }
 
 void clinit$RMIServerImpl_Stub($Class* class$) {
+	$useLocalCurrentObjectStackCache();
 	$beforeCallerSensitive();
 	{
 		try {

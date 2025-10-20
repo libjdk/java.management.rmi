@@ -123,6 +123,7 @@ void RMIConnector$RMINotifClient::init$($RMIConnector* this$0, $ClassLoader* cl,
 }
 
 $NotificationResult* RMIConnector$RMINotifClient::fetchNotifs(int64_t clientSequenceNumber, int32_t maxNotifications, int64_t timeout) {
+	$useLocalCurrentObjectStackCache();
 	bool retried = false;
 	while (true) {
 		try {
@@ -172,6 +173,7 @@ void RMIConnector$RMINotifClient::rethrowDeserializationException($IOException* 
 }
 
 $Integer* RMIConnector$RMINotifClient::addListenerForMBeanRemovedNotif() {
+	$useLocalCurrentObjectStackCache();
 	$var($NotificationFilterSupport, clientFilter, $new($NotificationFilterSupport));
 	$init($MBeanServerNotification);
 	clientFilter->enableType($MBeanServerNotification::UNREGISTRATION_NOTIFICATION);
@@ -192,6 +194,7 @@ $Integer* RMIConnector$RMINotifClient::addListenerForMBeanRemovedNotif() {
 }
 
 void RMIConnector$RMINotifClient::removeListenerForMBeanRemovedNotif($Integer* id) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$init($MBeanServerDelegate);
 		$nc(this->this$0->connection)->removeNotificationListeners($MBeanServerDelegate::DELEGATE_NAME, $$new($IntegerArray, {id}), nullptr);
@@ -204,6 +207,7 @@ void RMIConnector$RMINotifClient::removeListenerForMBeanRemovedNotif($Integer* i
 }
 
 void RMIConnector$RMINotifClient::lostNotifs($String* message, int64_t number) {
+	$useLocalCurrentObjectStackCache();
 	$init($JMXConnectionNotification);
 	$var($String, notifType, $JMXConnectionNotification::NOTIFS_LOST);
 	$var($String, var$0, notifType);

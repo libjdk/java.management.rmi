@@ -78,6 +78,7 @@ void RMIConnectionImpl$CombinedClassLoader::init$($ClassLoader* parent, $ClassLo
 }
 
 $Class* RMIConnectionImpl$CombinedClassLoader::loadClass($String* name, bool resolve) {
+	$useLocalCurrentObjectStackCache();
 	$ReflectUtil::checkPackageAccess(name);
 	try {
 		$ClassLoader::loadClass(name, resolve);

@@ -229,6 +229,7 @@ void RMIConnectionImpl_Stub::init$($RemoteRef* ref) {
 }
 
 void RMIConnectionImpl_Stub::addNotificationListener($ObjectName* $param_ObjectName_1, $ObjectName* $param_ObjectName_2, $MarshalledObject* $param_MarshalledObject_3, $MarshalledObject* $param_MarshalledObject_4, $Subject* $param_Subject_5) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$nc(this->ref)->invoke(static_cast<$Remote*>(static_cast<$RemoteObject*>(static_cast<$RemoteStub*>(this))), RMIConnectionImpl_Stub::$method_addNotificationListener_0, $$new($ObjectArray, {
 			$of($param_ObjectName_1),
@@ -253,6 +254,7 @@ void RMIConnectionImpl_Stub::addNotificationListener($ObjectName* $param_ObjectN
 }
 
 $IntegerArray* RMIConnectionImpl_Stub::addNotificationListeners($ObjectNameArray* $param_arrayOf_ObjectName_1, $MarshalledObjectArray* $param_arrayOf_MarshalledObject_2, $SubjectArray* $param_arrayOf_Subject_3) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($Object, $result, $nc(this->ref)->invoke(static_cast<$Remote*>(static_cast<$RemoteObject*>(static_cast<$RemoteStub*>(this))), RMIConnectionImpl_Stub::$method_addNotificationListeners_1, $$new($ObjectArray, {
 			$of($param_arrayOf_ObjectName_1),
@@ -277,6 +279,7 @@ $IntegerArray* RMIConnectionImpl_Stub::addNotificationListeners($ObjectNameArray
 }
 
 void RMIConnectionImpl_Stub::close() {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$nc(this->ref)->invoke(static_cast<$Remote*>(static_cast<$RemoteObject*>(static_cast<$RemoteStub*>(this))), RMIConnectionImpl_Stub::$method_close_2, nullptr, 0xBE2E5BC7809D0DCC);
 	} catch ($RuntimeException&) {
@@ -292,6 +295,7 @@ void RMIConnectionImpl_Stub::close() {
 }
 
 $ObjectInstance* RMIConnectionImpl_Stub::createMBean($String* $param_String_1, $ObjectName* $param_ObjectName_2, $MarshalledObject* $param_MarshalledObject_3, $StringArray* $param_arrayOf_String_4, $Subject* $param_Subject_5) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($Object, $result, $nc(this->ref)->invoke(static_cast<$Remote*>(static_cast<$RemoteObject*>(static_cast<$RemoteStub*>(this))), RMIConnectionImpl_Stub::$method_createMBean_3, $$new($ObjectArray, {
 			$of($param_String_1),
@@ -327,6 +331,7 @@ $ObjectInstance* RMIConnectionImpl_Stub::createMBean($String* $param_String_1, $
 }
 
 $ObjectInstance* RMIConnectionImpl_Stub::createMBean($String* $param_String_1, $ObjectName* $param_ObjectName_2, $ObjectName* $param_ObjectName_3, $MarshalledObject* $param_MarshalledObject_4, $StringArray* $param_arrayOf_String_5, $Subject* $param_Subject_6) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($Object, $result, $nc(this->ref)->invoke(static_cast<$Remote*>(static_cast<$RemoteObject*>(static_cast<$RemoteStub*>(this))), RMIConnectionImpl_Stub::$method_createMBean_4, $$new($ObjectArray, {
 			$of($param_String_1),
@@ -366,6 +371,7 @@ $ObjectInstance* RMIConnectionImpl_Stub::createMBean($String* $param_String_1, $
 }
 
 $ObjectInstance* RMIConnectionImpl_Stub::createMBean($String* $param_String_1, $ObjectName* $param_ObjectName_2, $ObjectName* $param_ObjectName_3, $Subject* $param_Subject_4) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($Object, $result, $nc(this->ref)->invoke(static_cast<$Remote*>(static_cast<$RemoteObject*>(static_cast<$RemoteStub*>(this))), RMIConnectionImpl_Stub::$method_createMBean_5, $$new($ObjectArray, {
 			$of($param_String_1),
@@ -403,6 +409,7 @@ $ObjectInstance* RMIConnectionImpl_Stub::createMBean($String* $param_String_1, $
 }
 
 $ObjectInstance* RMIConnectionImpl_Stub::createMBean($String* $param_String_1, $ObjectName* $param_ObjectName_2, $Subject* $param_Subject_3) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($Object, $result, $nc(this->ref)->invoke(static_cast<$Remote*>(static_cast<$RemoteObject*>(static_cast<$RemoteStub*>(this))), RMIConnectionImpl_Stub::$method_createMBean_6, $$new($ObjectArray, {
 			$of($param_String_1),
@@ -436,6 +443,7 @@ $ObjectInstance* RMIConnectionImpl_Stub::createMBean($String* $param_String_1, $
 }
 
 $NotificationResult* RMIConnectionImpl_Stub::fetchNotifications(int64_t $param_long_1, int32_t $param_int_2, int64_t $param_long_3) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($Object, $result, $nc(this->ref)->invoke(static_cast<$Remote*>(static_cast<$RemoteObject*>(static_cast<$RemoteStub*>(this))), RMIConnectionImpl_Stub::$method_fetchNotifications_7, $$new($ObjectArray, {
 			$($of($Long::valueOf($param_long_1))),
@@ -457,6 +465,7 @@ $NotificationResult* RMIConnectionImpl_Stub::fetchNotifications(int64_t $param_l
 }
 
 $Object* RMIConnectionImpl_Stub::getAttribute($ObjectName* $param_ObjectName_1, $String* $param_String_2, $Subject* $param_Subject_3) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($Object, $result, $nc(this->ref)->invoke(static_cast<$Remote*>(static_cast<$RemoteObject*>(static_cast<$RemoteStub*>(this))), RMIConnectionImpl_Stub::$method_getAttribute_8, $$new($ObjectArray, {
 			$of($param_ObjectName_1),
@@ -490,6 +499,7 @@ $Object* RMIConnectionImpl_Stub::getAttribute($ObjectName* $param_ObjectName_1, 
 }
 
 $AttributeList* RMIConnectionImpl_Stub::getAttributes($ObjectName* $param_ObjectName_1, $StringArray* $param_arrayOf_String_2, $Subject* $param_Subject_3) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($Object, $result, $nc(this->ref)->invoke(static_cast<$Remote*>(static_cast<$RemoteObject*>(static_cast<$RemoteStub*>(this))), RMIConnectionImpl_Stub::$method_getAttributes_9, $$new($ObjectArray, {
 			$of($param_ObjectName_1),
@@ -517,6 +527,7 @@ $AttributeList* RMIConnectionImpl_Stub::getAttributes($ObjectName* $param_Object
 }
 
 $String* RMIConnectionImpl_Stub::getConnectionId() {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($Object, $result, $nc(this->ref)->invoke(static_cast<$Remote*>(static_cast<$RemoteObject*>(static_cast<$RemoteStub*>(this))), RMIConnectionImpl_Stub::$method_getConnectionId_10, nullptr, 0xFF0EBEC77DC65363));
 		return ($cast($String, $result));
@@ -534,6 +545,7 @@ $String* RMIConnectionImpl_Stub::getConnectionId() {
 }
 
 $String* RMIConnectionImpl_Stub::getDefaultDomain($Subject* $param_Subject_1) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($Object, $result, $nc(this->ref)->invoke(static_cast<$Remote*>(static_cast<$RemoteObject*>(static_cast<$RemoteStub*>(this))), RMIConnectionImpl_Stub::$method_getDefaultDomain_11, $$new($ObjectArray, {$of($param_Subject_1)}), 0x53EDA2D82E1BDFA8));
 		return ($cast($String, $result));
@@ -551,6 +563,7 @@ $String* RMIConnectionImpl_Stub::getDefaultDomain($Subject* $param_Subject_1) {
 }
 
 $StringArray* RMIConnectionImpl_Stub::getDomains($Subject* $param_Subject_1) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($Object, $result, $nc(this->ref)->invoke(static_cast<$Remote*>(static_cast<$RemoteObject*>(static_cast<$RemoteStub*>(this))), RMIConnectionImpl_Stub::$method_getDomains_12, $$new($ObjectArray, {$of($param_Subject_1)}), 0xA38AB48D41D0F631));
 		return ($cast($StringArray, $result));
@@ -568,6 +581,7 @@ $StringArray* RMIConnectionImpl_Stub::getDomains($Subject* $param_Subject_1) {
 }
 
 $Integer* RMIConnectionImpl_Stub::getMBeanCount($Subject* $param_Subject_1) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($Object, $result, $nc(this->ref)->invoke(static_cast<$Remote*>(static_cast<$RemoteObject*>(static_cast<$RemoteStub*>(this))), RMIConnectionImpl_Stub::$method_getMBeanCount_13, $$new($ObjectArray, {$of($param_Subject_1)}), 0xE3A812879DC32EA5));
 		return ($cast($Integer, $result));
@@ -585,6 +599,7 @@ $Integer* RMIConnectionImpl_Stub::getMBeanCount($Subject* $param_Subject_1) {
 }
 
 $MBeanInfo* RMIConnectionImpl_Stub::getMBeanInfo($ObjectName* $param_ObjectName_1, $Subject* $param_Subject_2) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($Object, $result, $nc(this->ref)->invoke(static_cast<$Remote*>(static_cast<$RemoteObject*>(static_cast<$RemoteStub*>(this))), RMIConnectionImpl_Stub::$method_getMBeanInfo_14, $$new($ObjectArray, {
 			$of($param_ObjectName_1),
@@ -614,6 +629,7 @@ $MBeanInfo* RMIConnectionImpl_Stub::getMBeanInfo($ObjectName* $param_ObjectName_
 }
 
 $ObjectInstance* RMIConnectionImpl_Stub::getObjectInstance($ObjectName* $param_ObjectName_1, $Subject* $param_Subject_2) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($Object, $result, $nc(this->ref)->invoke(static_cast<$Remote*>(static_cast<$RemoteObject*>(static_cast<$RemoteStub*>(this))), RMIConnectionImpl_Stub::$method_getObjectInstance_15, $$new($ObjectArray, {
 			$of($param_ObjectName_1),
@@ -637,6 +653,7 @@ $ObjectInstance* RMIConnectionImpl_Stub::getObjectInstance($ObjectName* $param_O
 }
 
 $Object* RMIConnectionImpl_Stub::invoke($ObjectName* $param_ObjectName_1, $String* $param_String_2, $MarshalledObject* $param_MarshalledObject_3, $StringArray* $param_arrayOf_String_4, $Subject* $param_Subject_5) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($Object, $result, $nc(this->ref)->invoke(static_cast<$Remote*>(static_cast<$RemoteObject*>(static_cast<$RemoteStub*>(this))), RMIConnectionImpl_Stub::$method_invoke_16, $$new($ObjectArray, {
 			$of($param_ObjectName_1),
@@ -669,6 +686,7 @@ $Object* RMIConnectionImpl_Stub::invoke($ObjectName* $param_ObjectName_1, $Strin
 }
 
 bool RMIConnectionImpl_Stub::isInstanceOf($ObjectName* $param_ObjectName_1, $String* $param_String_2, $Subject* $param_Subject_3) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($Object, $result, $nc(this->ref)->invoke(static_cast<$Remote*>(static_cast<$RemoteObject*>(static_cast<$RemoteStub*>(this))), RMIConnectionImpl_Stub::$method_isInstanceOf_17, $$new($ObjectArray, {
 			$of($param_ObjectName_1),
@@ -693,6 +711,7 @@ bool RMIConnectionImpl_Stub::isInstanceOf($ObjectName* $param_ObjectName_1, $Str
 }
 
 bool RMIConnectionImpl_Stub::isRegistered($ObjectName* $param_ObjectName_1, $Subject* $param_Subject_2) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($Object, $result, $nc(this->ref)->invoke(static_cast<$Remote*>(static_cast<$RemoteObject*>(static_cast<$RemoteStub*>(this))), RMIConnectionImpl_Stub::$method_isRegistered_18, $$new($ObjectArray, {
 			$of($param_ObjectName_1),
@@ -713,6 +732,7 @@ bool RMIConnectionImpl_Stub::isRegistered($ObjectName* $param_ObjectName_1, $Sub
 }
 
 $Set* RMIConnectionImpl_Stub::queryMBeans($ObjectName* $param_ObjectName_1, $MarshalledObject* $param_MarshalledObject_2, $Subject* $param_Subject_3) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($Object, $result, $nc(this->ref)->invoke(static_cast<$Remote*>(static_cast<$RemoteObject*>(static_cast<$RemoteStub*>(this))), RMIConnectionImpl_Stub::$method_queryMBeans_19, $$new($ObjectArray, {
 			$of($param_ObjectName_1),
@@ -734,6 +754,7 @@ $Set* RMIConnectionImpl_Stub::queryMBeans($ObjectName* $param_ObjectName_1, $Mar
 }
 
 $Set* RMIConnectionImpl_Stub::queryNames($ObjectName* $param_ObjectName_1, $MarshalledObject* $param_MarshalledObject_2, $Subject* $param_Subject_3) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($Object, $result, $nc(this->ref)->invoke(static_cast<$Remote*>(static_cast<$RemoteObject*>(static_cast<$RemoteStub*>(this))), RMIConnectionImpl_Stub::$method_queryNames_20, $$new($ObjectArray, {
 			$of($param_ObjectName_1),
@@ -755,6 +776,7 @@ $Set* RMIConnectionImpl_Stub::queryNames($ObjectName* $param_ObjectName_1, $Mars
 }
 
 void RMIConnectionImpl_Stub::removeNotificationListener($ObjectName* $param_ObjectName_1, $ObjectName* $param_ObjectName_2, $MarshalledObject* $param_MarshalledObject_3, $MarshalledObject* $param_MarshalledObject_4, $Subject* $param_Subject_5) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$nc(this->ref)->invoke(static_cast<$Remote*>(static_cast<$RemoteObject*>(static_cast<$RemoteStub*>(this))), RMIConnectionImpl_Stub::$method_removeNotificationListener_21, $$new($ObjectArray, {
 			$of($param_ObjectName_1),
@@ -782,6 +804,7 @@ void RMIConnectionImpl_Stub::removeNotificationListener($ObjectName* $param_Obje
 }
 
 void RMIConnectionImpl_Stub::removeNotificationListener($ObjectName* $param_ObjectName_1, $ObjectName* $param_ObjectName_2, $Subject* $param_Subject_3) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$nc(this->ref)->invoke(static_cast<$Remote*>(static_cast<$RemoteObject*>(static_cast<$RemoteStub*>(this))), RMIConnectionImpl_Stub::$method_removeNotificationListener_22, $$new($ObjectArray, {
 			$of($param_ObjectName_1),
@@ -807,6 +830,7 @@ void RMIConnectionImpl_Stub::removeNotificationListener($ObjectName* $param_Obje
 }
 
 void RMIConnectionImpl_Stub::removeNotificationListeners($ObjectName* $param_ObjectName_1, $IntegerArray* $param_arrayOf_Integer_2, $Subject* $param_Subject_3) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$nc(this->ref)->invoke(static_cast<$Remote*>(static_cast<$RemoteObject*>(static_cast<$RemoteStub*>(this))), RMIConnectionImpl_Stub::$method_removeNotificationListeners_23, $$new($ObjectArray, {
 			$of($param_ObjectName_1),
@@ -832,6 +856,7 @@ void RMIConnectionImpl_Stub::removeNotificationListeners($ObjectName* $param_Obj
 }
 
 void RMIConnectionImpl_Stub::setAttribute($ObjectName* $param_ObjectName_1, $MarshalledObject* $param_MarshalledObject_2, $Subject* $param_Subject_3) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$nc(this->ref)->invoke(static_cast<$Remote*>(static_cast<$RemoteObject*>(static_cast<$RemoteStub*>(this))), RMIConnectionImpl_Stub::$method_setAttribute_24, $$new($ObjectArray, {
 			$of($param_ObjectName_1),
@@ -866,6 +891,7 @@ void RMIConnectionImpl_Stub::setAttribute($ObjectName* $param_ObjectName_1, $Mar
 }
 
 $AttributeList* RMIConnectionImpl_Stub::setAttributes($ObjectName* $param_ObjectName_1, $MarshalledObject* $param_MarshalledObject_2, $Subject* $param_Subject_3) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($Object, $result, $nc(this->ref)->invoke(static_cast<$Remote*>(static_cast<$RemoteObject*>(static_cast<$RemoteStub*>(this))), RMIConnectionImpl_Stub::$method_setAttributes_25, $$new($ObjectArray, {
 			$of($param_ObjectName_1),
@@ -893,6 +919,7 @@ $AttributeList* RMIConnectionImpl_Stub::setAttributes($ObjectName* $param_Object
 }
 
 void RMIConnectionImpl_Stub::unregisterMBean($ObjectName* $param_ObjectName_1, $Subject* $param_Subject_2) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$nc(this->ref)->invoke(static_cast<$Remote*>(static_cast<$RemoteObject*>(static_cast<$RemoteStub*>(this))), RMIConnectionImpl_Stub::$method_unregisterMBean_26, $$new($ObjectArray, {
 			$of($param_ObjectName_1),
@@ -917,6 +944,7 @@ void RMIConnectionImpl_Stub::unregisterMBean($ObjectName* $param_ObjectName_1, $
 }
 
 void clinit$RMIConnectionImpl_Stub($Class* class$) {
+	$useLocalCurrentObjectStackCache();
 	$beforeCallerSensitive();
 	{
 		try {

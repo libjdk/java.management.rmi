@@ -59,6 +59,7 @@ $Object* allocate$NoCallStackClassLoader($Class* clazz) {
 }
 
 void NoCallStackClassLoader::init$($String* className, $bytes* byteCode, $StringArray* referencedClassNames, $ClassLoader* referencedClassLoader, $ProtectionDomain* protectionDomain) {
+	$useLocalCurrentObjectStackCache();
 	NoCallStackClassLoader::init$($$new($StringArray, {className}), $$new($byteArray2, {byteCode}), referencedClassNames, referencedClassLoader, protectionDomain);
 }
 

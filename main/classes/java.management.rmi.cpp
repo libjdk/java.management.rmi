@@ -119,7 +119,7 @@ void java$management$rmi$LibEventAction(int32_t eventType, void* eventData) {
 		java$management$rmi$PreloadClass(eventData);
 	}
 	if (eventType == JCPP_LIB_EVENT_TYPE_THREAD_START) {
-		$setCurrentObjectStack();
+		$onLibThreadStart(eventData);
 	}
 }
 

@@ -256,6 +256,7 @@ $Object* allocate$RMIJRMPServerImpl($Class* clazz) {
 }
 
 void RMIJRMPServerImpl::init$(int32_t port, $RMIClientSocketFactory* csf, $RMIServerSocketFactory* ssf, $Map* env) {
+	$useLocalCurrentObjectStackCache();
 	$RMIServerImpl::init$(env);
 	if (port < 0) {
 		$throwNew($IllegalArgumentException, $$str({"Negative port: "_s, $$str(port)}));
@@ -293,6 +294,7 @@ void RMIJRMPServerImpl::export$() {
 }
 
 void RMIJRMPServerImpl::export$($Remote* obj, $ObjectInputFilter* typeFilter) {
+	$useLocalCurrentObjectStackCache();
 	$init($RMIExporter);
 	$var($RMIExporter, exporter, $cast($RMIExporter, $nc(this->env)->get($RMIExporter::EXPORTER_ATTRIBUTE)));
 	bool daemon = $EnvHelp::isServerDaemon(this->env);
@@ -327,6 +329,7 @@ $Remote* RMIJRMPServerImpl::toStub() {
 }
 
 $RMIConnection* RMIJRMPServerImpl::makeClient($String* connectionId, $Subject* subject) {
+	$useLocalCurrentObjectStackCache();
 	if (connectionId == nullptr) {
 		$throwNew($NullPointerException, "Null connectionId"_s);
 	}

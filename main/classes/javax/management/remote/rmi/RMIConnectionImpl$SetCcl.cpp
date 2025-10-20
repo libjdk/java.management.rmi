@@ -67,6 +67,7 @@ void RMIConnectionImpl$SetCcl::init$($ClassLoader* classLoader) {
 }
 
 $Object* RMIConnectionImpl$SetCcl::run() {
+	$useLocalCurrentObjectStackCache();
 	$beforeCallerSensitive();
 	$var($Thread, currentThread, $Thread::currentThread());
 	$var($ClassLoader, old, currentThread->getContextClassLoader());

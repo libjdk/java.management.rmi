@@ -83,6 +83,7 @@ void RMIConnectionImpl$7::init$($RMIConnectionImpl* this$0, $ClassLoader* val$cl
 }
 
 $Object* RMIConnectionImpl$7::run() {
+	$useLocalCurrentObjectStackCache();
 	$beforeCallerSensitive();
 	$var($ClassLoader, var$0, $($Thread::currentThread())->getContextClassLoader());
 	return $of($new($RMIConnectionImpl$CombinedClassLoader, var$0, $$new($OrderClassLoaders, this->val$cl1, this->val$cl2)));

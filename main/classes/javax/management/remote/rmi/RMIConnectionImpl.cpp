@@ -424,6 +424,7 @@ $StringArray* RMIConnectionImpl::NO_STRINGS = nullptr;
 $ClassLogger* RMIConnectionImpl::logger = nullptr;
 
 void RMIConnectionImpl::init$($RMIServerImpl* rmiServer, $String* connectionId, $ClassLoader* defaultClassLoader, $Subject* subject, $Map* env$renamed) {
+	$useLocalCurrentObjectStackCache();
 	$var($Map, env, env$renamed);
 	$beforeCallerSensitive();
 	this->terminated = false;
@@ -462,6 +463,7 @@ void RMIConnectionImpl::init$($RMIServerImpl* rmiServer, $String* connectionId, 
 
 $AccessControlContext* RMIConnectionImpl::withPermissions($PermissionArray* perms) {
 	$init(RMIConnectionImpl);
+	$useLocalCurrentObjectStackCache();
 	$var($Permissions, col, $new($Permissions));
 	{
 		$var($PermissionArray, arr$, perms);
@@ -492,6 +494,7 @@ $String* RMIConnectionImpl::getConnectionId() {
 }
 
 void RMIConnectionImpl::close() {
+	$useLocalCurrentObjectStackCache();
 	bool debug = $nc(RMIConnectionImpl::logger)->debugOn();
 	$var($String, idstr, debug ? $str({"["_s, $(this->toString()), "]"_s}) : ($String*)nullptr);
 	$synchronized(this) {
@@ -530,6 +533,7 @@ void RMIConnectionImpl::unreferenced() {
 }
 
 $ObjectInstance* RMIConnectionImpl::createMBean($String* className, $ObjectName* name, $Subject* delegationSubject) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($ObjectArray, params, $new($ObjectArray, {
 			$of(className),
@@ -566,6 +570,7 @@ $ObjectInstance* RMIConnectionImpl::createMBean($String* className, $ObjectName*
 }
 
 $ObjectInstance* RMIConnectionImpl::createMBean($String* className, $ObjectName* name, $ObjectName* loaderName, $Subject* delegationSubject) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($ObjectArray, params, $new($ObjectArray, {
 			$of(className),
@@ -606,6 +611,7 @@ $ObjectInstance* RMIConnectionImpl::createMBean($String* className, $ObjectName*
 }
 
 $ObjectInstance* RMIConnectionImpl::createMBean($String* className, $ObjectName* name, $MarshalledObject* params, $StringArray* signature, $Subject* delegationSubject) {
+	$useLocalCurrentObjectStackCache();
 	$var($ObjectArray, values, nullptr);
 	bool debug = $nc(RMIConnectionImpl::logger)->debugOn();
 	if (debug) {
@@ -652,6 +658,7 @@ $ObjectInstance* RMIConnectionImpl::createMBean($String* className, $ObjectName*
 }
 
 $ObjectInstance* RMIConnectionImpl::createMBean($String* className, $ObjectName* name, $ObjectName* loaderName, $MarshalledObject* params, $StringArray* signature, $Subject* delegationSubject) {
+	$useLocalCurrentObjectStackCache();
 	$var($ObjectArray, values, nullptr);
 	bool debug = $nc(RMIConnectionImpl::logger)->debugOn();
 	if (debug) {
@@ -702,6 +709,7 @@ $ObjectInstance* RMIConnectionImpl::createMBean($String* className, $ObjectName*
 }
 
 void RMIConnectionImpl::unregisterMBean($ObjectName* name, $Subject* delegationSubject) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($ObjectArray, params, $new($ObjectArray, {$of(name)}));
 		if ($nc(RMIConnectionImpl::logger)->debugOn()) {
@@ -725,6 +733,7 @@ void RMIConnectionImpl::unregisterMBean($ObjectName* name, $Subject* delegationS
 }
 
 $ObjectInstance* RMIConnectionImpl::getObjectInstance($ObjectName* name, $Subject* delegationSubject) {
+	$useLocalCurrentObjectStackCache();
 	checkNonNull("ObjectName"_s, name);
 	try {
 		$var($ObjectArray, params, $new($ObjectArray, {$of(name)}));
@@ -747,6 +756,7 @@ $ObjectInstance* RMIConnectionImpl::getObjectInstance($ObjectName* name, $Subjec
 }
 
 $Set* RMIConnectionImpl::queryMBeans($ObjectName* name, $MarshalledObject* query, $Subject* delegationSubject) {
+	$useLocalCurrentObjectStackCache();
 	$var($QueryExp, queryValue, nullptr);
 	bool debug = $nc(RMIConnectionImpl::logger)->debugOn();
 	if (debug) {
@@ -775,6 +785,7 @@ $Set* RMIConnectionImpl::queryMBeans($ObjectName* name, $MarshalledObject* query
 }
 
 $Set* RMIConnectionImpl::queryNames($ObjectName* name, $MarshalledObject* query, $Subject* delegationSubject) {
+	$useLocalCurrentObjectStackCache();
 	$var($QueryExp, queryValue, nullptr);
 	bool debug = $nc(RMIConnectionImpl::logger)->debugOn();
 	if (debug) {
@@ -803,6 +814,7 @@ $Set* RMIConnectionImpl::queryNames($ObjectName* name, $MarshalledObject* query,
 }
 
 bool RMIConnectionImpl::isRegistered($ObjectName* name, $Subject* delegationSubject) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($ObjectArray, params, $new($ObjectArray, {$of(name)}));
 		return $nc(($cast($Boolean, $(doPrivilegedOperation(RMIConnectionImpl::IS_REGISTERED, params, delegationSubject)))))->booleanValue();
@@ -818,6 +830,7 @@ bool RMIConnectionImpl::isRegistered($ObjectName* name, $Subject* delegationSubj
 }
 
 $Integer* RMIConnectionImpl::getMBeanCount($Subject* delegationSubject) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($ObjectArray, params, $new($ObjectArray, 0));
 		if ($nc(RMIConnectionImpl::logger)->debugOn()) {
@@ -836,6 +849,7 @@ $Integer* RMIConnectionImpl::getMBeanCount($Subject* delegationSubject) {
 }
 
 $Object* RMIConnectionImpl::getAttribute($ObjectName* name, $String* attribute, $Subject* delegationSubject) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($ObjectArray, params, $new($ObjectArray, {
 			$of(name),
@@ -869,6 +883,7 @@ $Object* RMIConnectionImpl::getAttribute($ObjectName* name, $String* attribute, 
 }
 
 $AttributeList* RMIConnectionImpl::getAttributes($ObjectName* name, $StringArray* attributes, $Subject* delegationSubject) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($ObjectArray, params, $new($ObjectArray, {
 			$of(name),
@@ -897,6 +912,7 @@ $AttributeList* RMIConnectionImpl::getAttributes($ObjectName* name, $StringArray
 }
 
 void RMIConnectionImpl::setAttribute($ObjectName* name, $MarshalledObject* attribute, $Subject* delegationSubject) {
+	$useLocalCurrentObjectStackCache();
 	$var($Attribute, attr, nullptr);
 	bool debug = $nc(RMIConnectionImpl::logger)->debugOn();
 	if (debug) {
@@ -940,6 +956,7 @@ void RMIConnectionImpl::setAttribute($ObjectName* name, $MarshalledObject* attri
 }
 
 $AttributeList* RMIConnectionImpl::setAttributes($ObjectName* name, $MarshalledObject* attributes, $Subject* delegationSubject) {
+	$useLocalCurrentObjectStackCache();
 	$var($AttributeList, attrlist, nullptr);
 	bool debug = $nc(RMIConnectionImpl::logger)->debugOn();
 	if (debug) {
@@ -975,6 +992,7 @@ $AttributeList* RMIConnectionImpl::setAttributes($ObjectName* name, $MarshalledO
 }
 
 $Object* RMIConnectionImpl::invoke($ObjectName* name, $String* operationName, $MarshalledObject* params, $StringArray* signature, $Subject* delegationSubject) {
+	$useLocalCurrentObjectStackCache();
 	checkNonNull("ObjectName"_s, name);
 	checkNonNull("Operation name"_s, operationName);
 	$var($ObjectArray, values, nullptr);
@@ -1017,6 +1035,7 @@ $Object* RMIConnectionImpl::invoke($ObjectName* name, $String* operationName, $M
 }
 
 $String* RMIConnectionImpl::getDefaultDomain($Subject* delegationSubject) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($ObjectArray, params, $new($ObjectArray, 0));
 		if ($nc(RMIConnectionImpl::logger)->debugOn()) {
@@ -1035,6 +1054,7 @@ $String* RMIConnectionImpl::getDefaultDomain($Subject* delegationSubject) {
 }
 
 $StringArray* RMIConnectionImpl::getDomains($Subject* delegationSubject) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($ObjectArray, params, $new($ObjectArray, 0));
 		if ($nc(RMIConnectionImpl::logger)->debugOn()) {
@@ -1053,6 +1073,7 @@ $StringArray* RMIConnectionImpl::getDomains($Subject* delegationSubject) {
 }
 
 $MBeanInfo* RMIConnectionImpl::getMBeanInfo($ObjectName* name, $Subject* delegationSubject) {
+	$useLocalCurrentObjectStackCache();
 	checkNonNull("ObjectName"_s, name);
 	try {
 		$var($ObjectArray, params, $new($ObjectArray, {$of(name)}));
@@ -1081,6 +1102,7 @@ $MBeanInfo* RMIConnectionImpl::getMBeanInfo($ObjectName* name, $Subject* delegat
 }
 
 bool RMIConnectionImpl::isInstanceOf($ObjectName* name, $String* className, $Subject* delegationSubject) {
+	$useLocalCurrentObjectStackCache();
 	checkNonNull("ObjectName"_s, name);
 	try {
 		$var($ObjectArray, params, $new($ObjectArray, {
@@ -1106,6 +1128,7 @@ bool RMIConnectionImpl::isInstanceOf($ObjectName* name, $String* className, $Sub
 }
 
 $IntegerArray* RMIConnectionImpl::addNotificationListeners($ObjectNameArray* names, $MarshalledObjectArray* filters, $SubjectArray* delegationSubjects) {
+	$useLocalCurrentObjectStackCache();
 	if (names == nullptr || filters == nullptr) {
 		$throwNew($IllegalArgumentException, "Got null arguments."_s);
 	}
@@ -1169,6 +1192,7 @@ $IntegerArray* RMIConnectionImpl::addNotificationListeners($ObjectNameArray* nam
 }
 
 void RMIConnectionImpl::addNotificationListener($ObjectName* name, $ObjectName* listener, $MarshalledObject* filter, $MarshalledObject* handback, $Subject* delegationSubject) {
+	$useLocalCurrentObjectStackCache();
 	checkNonNull("Target MBean name"_s, name);
 	checkNonNull("Listener MBean name"_s, listener);
 	$var($NotificationFilter, filterValue, nullptr);
@@ -1210,6 +1234,7 @@ void RMIConnectionImpl::addNotificationListener($ObjectName* name, $ObjectName* 
 }
 
 void RMIConnectionImpl::removeNotificationListeners($ObjectName* name, $IntegerArray* listenerIDs, $Subject* delegationSubject) {
+	$useLocalCurrentObjectStackCache();
 	if (name == nullptr || listenerIDs == nullptr) {
 		$throwNew($IllegalArgumentException, "Illegal null parameter"_s);
 	}
@@ -1245,6 +1270,7 @@ void RMIConnectionImpl::removeNotificationListeners($ObjectName* name, $IntegerA
 }
 
 void RMIConnectionImpl::removeNotificationListener($ObjectName* name, $ObjectName* listener, $Subject* delegationSubject) {
+	$useLocalCurrentObjectStackCache();
 	checkNonNull("Target MBean name"_s, name);
 	checkNonNull("Listener MBean name"_s, listener);
 	try {
@@ -1273,6 +1299,7 @@ void RMIConnectionImpl::removeNotificationListener($ObjectName* name, $ObjectNam
 }
 
 void RMIConnectionImpl::removeNotificationListener($ObjectName* name, $ObjectName* listener, $MarshalledObject* filter, $MarshalledObject* handback, $Subject* delegationSubject) {
+	$useLocalCurrentObjectStackCache();
 	checkNonNull("Target MBean name"_s, name);
 	checkNonNull("Listener MBean name"_s, listener);
 	$var($NotificationFilter, filterValue, nullptr);
@@ -1317,6 +1344,7 @@ void RMIConnectionImpl::removeNotificationListener($ObjectName* name, $ObjectNam
 }
 
 $NotificationResult* RMIConnectionImpl::fetchNotifications(int64_t clientSequenceNumber, int32_t maxNotifications, int64_t timeout) {
+	$useLocalCurrentObjectStackCache();
 	$beforeCallerSensitive();
 	if ($nc(RMIConnectionImpl::logger)->debugOn()) {
 		$nc(RMIConnectionImpl::logger)->debug("fetchNotifications"_s, $$str({"connectionId="_s, this->connectionId, ", timeout="_s, $$str(timeout)}));
@@ -1371,6 +1399,7 @@ $String* RMIConnectionImpl::toString() {
 }
 
 $ClassLoader* RMIConnectionImpl::getClassLoader($ObjectName* name) {
+	$useLocalCurrentObjectStackCache();
 	$beforeCallerSensitive();
 	try {
 		$var($PrivilegedExceptionAction, var$0, static_cast<$PrivilegedExceptionAction*>($new($RMIConnectionImpl$5, this, name)));
@@ -1383,6 +1412,7 @@ $ClassLoader* RMIConnectionImpl::getClassLoader($ObjectName* name) {
 }
 
 $ClassLoader* RMIConnectionImpl::getClassLoaderFor($ObjectName* name) {
+	$useLocalCurrentObjectStackCache();
 	$beforeCallerSensitive();
 	try {
 		$var($PrivilegedExceptionAction, var$0, static_cast<$PrivilegedExceptionAction*>($new($RMIConnectionImpl$6, this, name)));
@@ -1395,6 +1425,7 @@ $ClassLoader* RMIConnectionImpl::getClassLoaderFor($ObjectName* name) {
 }
 
 $Object* RMIConnectionImpl::doPrivilegedOperation(int32_t operation, $ObjectArray* params, $Subject* delegationSubject) {
+	$useLocalCurrentObjectStackCache();
 	$beforeCallerSensitive();
 	$nc(this->serverCommunicatorAdmin)->reqIncoming();
 	{
@@ -1449,6 +1480,7 @@ $Object* RMIConnectionImpl::doPrivilegedOperation(int32_t operation, $ObjectArra
 }
 
 $Object* RMIConnectionImpl::doOperation(int32_t operation, $ObjectArray* params) {
+	$useLocalCurrentObjectStackCache();
 	switch (operation) {
 	case RMIConnectionImpl::CREATE_MBEAN:
 		{
@@ -1562,6 +1594,7 @@ $Object* RMIConnectionImpl::doOperation(int32_t operation, $ObjectArray* params)
 }
 
 $Object* RMIConnectionImpl::unwrap($MarshalledObject* mo, $ClassLoader* cl, $Class* wrappedClass, $Subject* delegationSubject) {
+	$useLocalCurrentObjectStackCache();
 	$beforeCallerSensitive();
 	if (mo == nullptr) {
 		return $of(nullptr);
@@ -1625,6 +1658,7 @@ $Object* RMIConnectionImpl::unwrap($MarshalledObject* mo, $ClassLoader* cl, $Cla
 }
 
 $Object* RMIConnectionImpl::unwrap($MarshalledObject* mo, $ClassLoader* cl1, $ClassLoader* cl2, $Class* wrappedClass, $Subject* delegationSubject) {
+	$useLocalCurrentObjectStackCache();
 	$beforeCallerSensitive();
 	if (mo == nullptr) {
 		return $of(nullptr);
@@ -1674,6 +1708,7 @@ $StringArray* RMIConnectionImpl::nullIsEmpty($StringArray* array) {
 
 void RMIConnectionImpl::checkNonNull($String* what, Object$* x) {
 	$init(RMIConnectionImpl);
+	$useLocalCurrentObjectStackCache();
 	if (x == nullptr) {
 		$var($RuntimeException, wrapped, $new($IllegalArgumentException, $$str({what, " must not be null"_s})));
 		$throwNew($RuntimeOperationsException, wrapped);

@@ -73,6 +73,7 @@ void RMIConnectionImpl$RMIServerCommunicatorAdmin::init$($RMIConnectionImpl* thi
 }
 
 void RMIConnectionImpl$RMIServerCommunicatorAdmin::doStop() {
+	$useLocalCurrentObjectStackCache();
 	try {
 		this->this$0->close();
 	} catch ($IOException&) {

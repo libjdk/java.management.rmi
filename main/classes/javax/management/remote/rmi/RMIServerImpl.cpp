@@ -195,6 +195,7 @@ $MBeanServer* RMIServerImpl::getMBeanServer() {
 }
 
 $String* RMIServerImpl::getVersion() {
+	$useLocalCurrentObjectStackCache();
 	try {
 		return $str({"1.0 java_runtime_"_s, $($System::getProperty("java.runtime.version"_s))});
 	} catch ($SecurityException&) {
@@ -209,6 +210,7 @@ $RMIConnection* RMIServerImpl::newClient(Object$* credentials) {
 }
 
 $RMIConnection* RMIServerImpl::doNewClient(Object$* credentials) {
+	$useLocalCurrentObjectStackCache();
 	bool tracing = $nc(RMIServerImpl::logger)->traceOn();
 	if (tracing) {
 		$nc(RMIServerImpl::logger)->trace("newClient"_s, "making new client"_s);
@@ -267,6 +269,7 @@ $RMIConnection* RMIServerImpl::doNewClient(Object$* credentials) {
 }
 
 void RMIServerImpl::clientClosed($RMIConnection* client) {
+	$useLocalCurrentObjectStackCache();
 	bool debug = $nc(RMIServerImpl::logger)->debugOn();
 	if (debug) {
 		$nc(RMIServerImpl::logger)->trace("clientClosed"_s, $$str({"client="_s, client}));
@@ -302,6 +305,7 @@ void RMIServerImpl::clientClosed($RMIConnection* client) {
 
 void RMIServerImpl::close() {
 	$synchronized(this) {
+		$useLocalCurrentObjectStackCache();
 		bool tracing = $nc(RMIServerImpl::logger)->traceOn();
 		bool debug = $nc(RMIServerImpl::logger)->debugOn();
 		if (tracing) {
@@ -384,6 +388,7 @@ $String* RMIServerImpl::makeConnectionId($String* protocol, $Subject* subject) {
 	$load(RMIServerImpl);
 	$synchronized(class$) {
 		$init(RMIServerImpl);
+		$useLocalCurrentObjectStackCache();
 		++RMIServerImpl::connectionIdNumber;
 		$var($String, clientHost, ""_s);
 		try {
@@ -423,6 +428,7 @@ $String* RMIServerImpl::makeConnectionId($String* protocol, $Subject* subject) {
 }
 
 void RMIServerImpl::dropDeadReferences() {
+	$useLocalCurrentObjectStackCache();
 	$synchronized(this->clientList) {
 		{
 			$var($Iterator, it, $nc(this->clientList)->iterator());

@@ -393,6 +393,7 @@ void RMIConnector::init$($RMIServer* rmiServer, $Map* environment) {
 }
 
 $String* RMIConnector::toString() {
+	$useLocalCurrentObjectStackCache();
 	$var($StringBuilder, b, $new($StringBuilder, $($of(this)->getClass()->getName())));
 	b->append(":"_s);
 	if (this->rmiServer != nullptr) {
@@ -417,6 +418,7 @@ void RMIConnector::connect() {
 
 void RMIConnector::connect($Map* environment) {
 	$synchronized(this) {
+		$useLocalCurrentObjectStackCache();
 		bool tracing = $nc(RMIConnector::logger)->traceOn();
 		$var($String, idstr, tracing ? $str({"["_s, $(this->toString()), "]"_s}) : ($String*)nullptr);
 		if (this->terminated) {
@@ -503,6 +505,7 @@ void RMIConnector::connect($Map* environment) {
 
 $String* RMIConnector::getConnectionId() {
 	$synchronized(this) {
+		$useLocalCurrentObjectStackCache();
 		if (this->terminated || !this->connected) {
 			if ($nc(RMIConnector::logger)->traceOn()) {
 				$nc(RMIConnector::logger)->trace("getConnectionId"_s, $$str({"["_s, $(this->toString()), "] not connected."_s}));
@@ -521,6 +524,7 @@ $MBeanServerConnection* RMIConnector::getMBeanServerConnection() {
 
 $MBeanServerConnection* RMIConnector::getMBeanServerConnection($Subject* delegationSubject) {
 	$synchronized(this) {
+		$useLocalCurrentObjectStackCache();
 		if (this->terminated) {
 			if ($nc(RMIConnector::logger)->traceOn()) {
 				$nc(RMIConnector::logger)->trace("getMBeanServerConnection"_s, $$str({"["_s, $(this->toString()), "] already closed."_s}));
@@ -569,6 +573,7 @@ void RMIConnector::close() {
 
 void RMIConnector::close(bool intern) {
 	$synchronized(this) {
+		$useLocalCurrentObjectStackCache();
 		bool tracing = $nc(RMIConnector::logger)->traceOn();
 		bool debug = $nc(RMIConnector::logger)->debugOn();
 		$var($String, idstr, tracing ? $str({"["_s, $(this->toString()), "]"_s}) : ($String*)nullptr);
@@ -660,6 +665,7 @@ void RMIConnector::close(bool intern) {
 }
 
 $Integer* RMIConnector::addListenerWithSubject($ObjectName* name, $MarshalledObject* filter, $Subject* delegationSubject, bool reconnect) {
+	$useLocalCurrentObjectStackCache();
 	bool debug = $nc(RMIConnector::logger)->debugOn();
 	if (debug) {
 		$nc(RMIConnector::logger)->debug("addListenerWithSubject"_s, "(ObjectName,MarshalledObject,Subject)"_s);
@@ -675,6 +681,7 @@ $Integer* RMIConnector::addListenerWithSubject($ObjectName* name, $MarshalledObj
 }
 
 $IntegerArray* RMIConnector::addListenersWithSubjects($ObjectNameArray* names, $MarshalledObjectArray* filters, $SubjectArray* delegationSubjects, bool reconnect) {
+	$useLocalCurrentObjectStackCache();
 	bool debug = $nc(RMIConnector::logger)->debugOn();
 	if (debug) {
 		$nc(RMIConnector::logger)->debug("addListenersWithSubjects"_s, "(ObjectName[],MarshalledObject[],Subject[])"_s);
@@ -737,6 +744,7 @@ void RMIConnector::initTransients() {
 
 void RMIConnector::checkStub($Remote* stub$renamed, $Class* stubClass) {
 	$init(RMIConnector);
+	$useLocalCurrentObjectStackCache();
 	$var($Remote, stub, stub$renamed);
 	$beforeCallerSensitive();
 	if ($nc($of(stub))->getClass() != stubClass) {
@@ -766,6 +774,7 @@ void RMIConnector::checkStub($Remote* stub$renamed, $Class* stubClass) {
 }
 
 $RMIServer* RMIConnector::findRMIServer($JMXServiceURL* directoryURL, $Map* environment) {
+	$useLocalCurrentObjectStackCache();
 	$var($String, path, $nc(directoryURL)->getURLPath());
 	int32_t end = $nc(path)->indexOf((int32_t)u';');
 	if (end < 0) {
@@ -782,6 +791,7 @@ $RMIServer* RMIConnector::findRMIServer($JMXServiceURL* directoryURL, $Map* envi
 }
 
 $RMIServer* RMIConnector::findRMIServerJNDI($String* jndiURL, $Map* env) {
+	$useLocalCurrentObjectStackCache();
 	$var($InitialContext, ctx, $new($InitialContext, $($EnvHelp::mapToHashtable(env))));
 	$var($Object, objref, ctx->lookup(jndiURL));
 	ctx->close();
@@ -794,6 +804,7 @@ $RMIServer* RMIConnector::narrowJRMPServer(Object$* objref) {
 }
 
 $RMIServer* RMIConnector::findRMIServerJRMP($String* base64, $Map* env) {
+	$useLocalCurrentObjectStackCache();
 	$var($bytes, serialized, nullptr);
 	try {
 		$assign(serialized, base64ToByteArray(base64));
@@ -815,6 +826,7 @@ $RMIServer* RMIConnector::findRMIServerJRMP($String* base64, $Map* env) {
 }
 
 $MBeanServerConnection* RMIConnector::getConnectionWithSubject($Subject* delegationSubject) {
+	$useLocalCurrentObjectStackCache();
 	$var($MBeanServerConnection, conn, nullptr);
 	if (delegationSubject == nullptr) {
 		if (this->nullSubjectConnRef == nullptr || ($assign(conn, $cast($MBeanServerConnection, $nc(this->nullSubjectConnRef)->get()))) == nullptr) {
@@ -839,6 +851,7 @@ $String* RMIConnector::packageOf($String* cn) {
 
 $RMIConnection* RMIConnector::shadowJrmpStub($RemoteObject* stub) {
 	$init(RMIConnector);
+	$useLocalCurrentObjectStackCache();
 	$beforeCallerSensitive();
 	$var($RemoteRef, ref, $nc(stub)->getRef());
 	$var($RemoteRef, proxyRef, $cast($RemoteRef, $nc(RMIConnector::proxyRefConstructor)->newInstance($$new($ObjectArray, {$of(ref)}))));
@@ -851,6 +864,7 @@ $RMIConnection* RMIConnector::shadowJrmpStub($RemoteObject* stub) {
 
 $RMIConnection* RMIConnector::getConnection($RMIServer* server, Object$* credentials, bool checkStub) {
 	$init(RMIConnector);
+	$useLocalCurrentObjectStackCache();
 	$var($RMIConnection, c, $nc(server)->newClient(credentials));
 	if (checkStub) {
 		RMIConnector::checkStub(c, RMIConnector::rmiConnectionImplStubClass);
@@ -912,6 +926,7 @@ $bytes* RMIConnector::base64ToByteArray($String* s) {
 
 int32_t RMIConnector::base64toInt(char16_t c) {
 	$init(RMIConnector);
+	$useLocalCurrentObjectStackCache();
 	int32_t result = 0;
 	if (c >= $nc(RMIConnector::base64ToInt)->length) {
 		result = -1;
@@ -925,6 +940,7 @@ int32_t RMIConnector::base64toInt(char16_t c) {
 }
 
 $ClassLoader* RMIConnector::pushDefaultClassLoader() {
+	$useLocalCurrentObjectStackCache();
 	$beforeCallerSensitive();
 	$var($Thread, t, $Thread::currentThread());
 	$var($ClassLoader, old, t->getContextClassLoader());
@@ -955,10 +971,12 @@ $String* RMIConnector::strings($StringArray* strs) {
 
 $String* RMIConnector::getAttributesNames($AttributeList* attributes) {
 	$init(RMIConnector);
+	$useLocalCurrentObjectStackCache();
 	return attributes != nullptr ? $cast($String, $nc($($nc($($nc($($nc(attributes)->asList()))->stream()))->map(static_cast<$Function*>($$new(RMIConnector$$Lambda$getName)))))->collect($($Collectors::joining(", "_s, "["_s, "]"_s)))) : "[]"_s;
 }
 
 void clinit$RMIConnector($Class* class$) {
+	$useLocalCurrentObjectStackCache();
 	$assignStatic(RMIConnector::pRefClassName, "jdk.jmx.remote.internal.rmi.PRef"_s);
 	$beforeCallerSensitive();
 	$var($String, pRefByteCodeString, $cstr({0xCA, 0xFE, 0xBA, 0xBE, '\0', '\0', '\0', '5', '\0', 0x17, '\n', '\0', 0x5, '\0', '\r', '\t', '\0', 0x4, '\0', 0xE, 0xB, '\0', 0xF, '\0', 0x10, 0x7, '\0', 0x11, 0x7, '\0', 0x12, 0x1, '\0', 0x6, '<', 'i', 'n', 'i', 't', '>', 0x1, '\0', 0x1E, '(', 'L', 'j', 'a', 'v', 'a', '/', 'r', 'm', 'i', '/', 's', 'e', 'r', 'v', 'e', 'r', '/', 'R', 'e', 'm', 'o', 't', 'e', 'R', 'e', 'f', ';', ')', 'V', 0x1, '\0', 0x4, 'C', 'o', 'd', 'e', 0x1, '\0', 0x6, 'i', 'n', 'v', 'o', 'k', 'e', 0x1, '\0', 'S', '(', 'L', 'j', 'a', 'v', 'a', '/', 'r', 'm', 'i', '/', 'R', 'e', 'm', 'o', 't', 'e', ';', 'L', 'j', 'a', 'v', 'a', '/', 'l', 'a', 'n', 'g', '/', 'r', 'e', 'f', 'l', 'e', 'c', 't', '/', 'M', 'e', 't', 'h', 'o', 'd', ';', '[', 'L', 'j', 'a', 'v', 'a', '/', 'l', 'a', 'n', 'g', '/', 'O', 'b', 'j', 'e', 'c', 't', ';', 'J', ')', 'L', 'j', 'a', 'v', 'a', '/', 'l', 'a', 'n', 'g', '/', 'O', 'b', 'j', 'e', 'c', 't', ';', 0x1, '\0', '\n', 'E', 'x', 'c', 'e', 'p', 't', 'i', 'o', 'n', 's', 0x7, '\0', 0x13, '\f', '\0', 0x6, '\0', 0x7, '\f', '\0', 0x14, '\0', 0x15, 0x7, '\0', 0x16, '\f', '\0', '\t', '\0', '\n', 0x1, '\0', ' ', 'j', 'd', 'k', '/', 'j', 'm', 'x', '/', 'r', 'e', 'm', 'o', 't', 'e', '/', 'i', 'n', 't', 'e', 'r', 'n', 'a', 'l', '/', 'r', 'm', 'i', '/', 'P', 'R', 'e', 'f', 0x1, '\0', '(', 'c', 'o', 'm', '/', 's', 'u', 'n', '/', 'j', 'm', 'x', '/', 'r', 'e', 'm', 'o', 't', 'e', '/', 'i', 'n', 't', 'e', 'r', 'n', 'a', 'l', '/', 'r', 'm', 'i', '/', 'P', 'r', 'o', 'x', 'y', 'R', 'e', 'f', 0x1, '\0', 0x13, 'j', 'a', 'v', 'a', '/', 'l', 'a', 'n', 'g', '/', 'E', 'x', 'c', 'e', 'p', 't', 'i', 'o', 'n', 0x1, '\0', 0x3, 'r', 'e', 'f', 0x1, '\0', 0x1B, 'L', 'j', 'a', 'v', 'a', '/', 'r', 'm', 'i', '/', 's', 'e', 'r', 'v', 'e', 'r', '/', 'R', 'e', 'm', 'o', 't', 'e', 'R', 'e', 'f', ';', 0x1, '\0', 0x19, 'j', 'a', 'v', 'a', '/', 'r', 'm', 'i', '/', 's', 'e', 'r', 'v', 'e', 'r', '/', 'R', 'e', 'm', 'o', 't', 'e', 'R', 'e', 'f', '\0', '!', '\0', 0x4, '\0', 0x5, '\0', '\0', '\0', '\0', '\0', 0x2, '\0', 0x1, '\0', 0x6, '\0', 0x7, '\0', 0x1, '\0', '\b', '\0', '\0', '\0', 0x12, '\0', 0x2, '\0', 0x2, '\0', '\0', '\0', 0x6, '*', '+', 0xB7, '\0', 0x1, 0xB1, '\0', '\0', '\0', '\0', '\0', 0x1, '\0', '\t', '\0', '\n', '\0', 0x2, '\0', '\b', '\0', '\0', '\0', 0x1B, '\0', 0x6, '\0', 0x6, '\0', '\0', '\0', 0xF, '*', 0xB4, '\0', 0x2, '+', ',', '-', 0x16, 0x4, 0xB9, '\0', 0x3, 0x6, '\0', 0xB0, '\0', '\0', '\0', '\0', '\0', 0xB, '\0', '\0', '\0', 0x4, '\0', 0x1, '\0', '\f', '\0', '\0'}));
