@@ -4,18 +4,7 @@
 #include <com/sun/jmx/remote/internal/ClientNotifForwarder.h>
 #include <com/sun/jmx/remote/util/ClassLogger.h>
 #include <java/io/IOException.h>
-#include <java/lang/Array.h>
-#include <java/lang/Class.h>
-#include <java/lang/ClassInfo.h>
 #include <java/lang/ClassLoader.h>
-#include <java/lang/FieldInfo.h>
-#include <java/lang/InnerClassInfo.h>
-#include <java/lang/Integer.h>
-#include <java/lang/MethodInfo.h>
-#include <java/lang/String.h>
-#include <java/lang/Throwable.h>
-#include <java/lang/reflect/Constructor.h>
-#include <java/lang/reflect/Method.h>
 #include <java/rmi/MarshalledObject.h>
 #include <java/util/Set.h>
 #include <javax/management/Attribute.h>
@@ -151,15 +140,14 @@ $ObjectInstance* RMIConnector$RemoteMBeanServerConnection::createMBean($String* 
 				$assign(var$2, $nc(this->this$0->connection)->createMBean(className, name, this->delegationSubject));
 				return$1 = true;
 				goto $finally;
-			} catch ($IOException&) {
-				$var($IOException, ioe, $catch());
+			} catch ($IOException& ioe) {
 				$nc(this->this$0->communicatorAdmin)->gotIOException(ioe);
 				$assign(var$2, $nc(this->this$0->connection)->createMBean(className, name, this->delegationSubject));
 				return$1 = true;
 				goto $finally;
 			}
-		} catch ($Throwable&) {
-			$assign(var$0, $catch());
+		} catch ($Throwable& var$3) {
+			$assign(var$0, var$3);
 		} $finally: {
 			this->this$0->popDefaultClassLoader(old);
 		}
@@ -189,15 +177,14 @@ $ObjectInstance* RMIConnector$RemoteMBeanServerConnection::createMBean($String* 
 				$assign(var$2, $nc(this->this$0->connection)->createMBean(className, name, loaderName, this->delegationSubject));
 				return$1 = true;
 				goto $finally;
-			} catch ($IOException&) {
-				$var($IOException, ioe, $catch());
+			} catch ($IOException& ioe) {
 				$nc(this->this$0->communicatorAdmin)->gotIOException(ioe);
 				$assign(var$2, $nc(this->this$0->connection)->createMBean(className, name, loaderName, this->delegationSubject));
 				return$1 = true;
 				goto $finally;
 			}
-		} catch ($Throwable&) {
-			$assign(var$0, $catch());
+		} catch ($Throwable& var$3) {
+			$assign(var$0, var$3);
 		} $finally: {
 			this->this$0->popDefaultClassLoader(old);
 		}
@@ -229,15 +216,14 @@ $ObjectInstance* RMIConnector$RemoteMBeanServerConnection::createMBean($String* 
 				$assign(var$3, $nc(this->this$0->connection)->createMBean(className, name, sParams, signature, this->delegationSubject));
 				return$2 = true;
 				goto $finally;
-			} catch ($IOException&) {
-				$var($IOException, ioe, $catch());
+			} catch ($IOException& ioe) {
 				$nc(this->this$0->communicatorAdmin)->gotIOException(ioe);
 				$assign(var$3, $nc(this->this$0->connection)->createMBean(className, name, sParams, signature, this->delegationSubject));
 				return$2 = true;
 				goto $finally;
 			}
-		} catch ($Throwable&) {
-			$assign(var$1, $catch());
+		} catch ($Throwable& var$4) {
+			$assign(var$1, var$4);
 		} $finally: {
 			this->this$0->popDefaultClassLoader(old);
 		}
@@ -269,15 +255,14 @@ $ObjectInstance* RMIConnector$RemoteMBeanServerConnection::createMBean($String* 
 				$assign(var$3, $nc(this->this$0->connection)->createMBean(className, name, loaderName, sParams, signature, this->delegationSubject));
 				return$2 = true;
 				goto $finally;
-			} catch ($IOException&) {
-				$var($IOException, ioe, $catch());
+			} catch ($IOException& ioe) {
 				$nc(this->this$0->communicatorAdmin)->gotIOException(ioe);
 				$assign(var$3, $nc(this->this$0->connection)->createMBean(className, name, loaderName, sParams, signature, this->delegationSubject));
 				return$2 = true;
 				goto $finally;
 			}
-		} catch ($Throwable&) {
-			$assign(var$1, $catch());
+		} catch ($Throwable& var$4) {
+			$assign(var$1, var$4);
 		} $finally: {
 			this->this$0->popDefaultClassLoader(old);
 		}
@@ -303,13 +288,12 @@ void RMIConnector$RemoteMBeanServerConnection::unregisterMBean($ObjectName* name
 		try {
 			try {
 				$nc(this->this$0->connection)->unregisterMBean(name, this->delegationSubject);
-			} catch ($IOException&) {
-				$var($IOException, ioe, $catch());
+			} catch ($IOException& ioe) {
 				$nc(this->this$0->communicatorAdmin)->gotIOException(ioe);
 				$nc(this->this$0->connection)->unregisterMBean(name, this->delegationSubject);
 			}
-		} catch ($Throwable&) {
-			$assign(var$0, $catch());
+		} catch ($Throwable& var$1) {
+			$assign(var$0, var$1);
 		} /*finally*/ {
 			this->this$0->popDefaultClassLoader(old);
 		}
@@ -335,15 +319,14 @@ $ObjectInstance* RMIConnector$RemoteMBeanServerConnection::getObjectInstance($Ob
 				$assign(var$2, $nc(this->this$0->connection)->getObjectInstance(name, this->delegationSubject));
 				return$1 = true;
 				goto $finally;
-			} catch ($IOException&) {
-				$var($IOException, ioe, $catch());
+			} catch ($IOException& ioe) {
 				$nc(this->this$0->communicatorAdmin)->gotIOException(ioe);
 				$assign(var$2, $nc(this->this$0->connection)->getObjectInstance(name, this->delegationSubject));
 				return$1 = true;
 				goto $finally;
 			}
-		} catch ($Throwable&) {
-			$assign(var$0, $catch());
+		} catch ($Throwable& var$3) {
+			$assign(var$0, var$3);
 		} $finally: {
 			this->this$0->popDefaultClassLoader(old);
 		}
@@ -374,15 +357,14 @@ $Set* RMIConnector$RemoteMBeanServerConnection::queryMBeans($ObjectName* name, $
 				$assign(var$2, $nc(this->this$0->connection)->queryMBeans(name, sQuery, this->delegationSubject));
 				return$1 = true;
 				goto $finally;
-			} catch ($IOException&) {
-				$var($IOException, ioe, $catch());
+			} catch ($IOException& ioe) {
 				$nc(this->this$0->communicatorAdmin)->gotIOException(ioe);
 				$assign(var$2, $nc(this->this$0->connection)->queryMBeans(name, sQuery, this->delegationSubject));
 				return$1 = true;
 				goto $finally;
 			}
-		} catch ($Throwable&) {
-			$assign(var$0, $catch());
+		} catch ($Throwable& var$3) {
+			$assign(var$0, var$3);
 		} $finally: {
 			this->this$0->popDefaultClassLoader(old);
 		}
@@ -413,15 +395,14 @@ $Set* RMIConnector$RemoteMBeanServerConnection::queryNames($ObjectName* name, $Q
 				$assign(var$2, $nc(this->this$0->connection)->queryNames(name, sQuery, this->delegationSubject));
 				return$1 = true;
 				goto $finally;
-			} catch ($IOException&) {
-				$var($IOException, ioe, $catch());
+			} catch ($IOException& ioe) {
 				$nc(this->this$0->communicatorAdmin)->gotIOException(ioe);
 				$assign(var$2, $nc(this->this$0->connection)->queryNames(name, sQuery, this->delegationSubject));
 				return$1 = true;
 				goto $finally;
 			}
-		} catch ($Throwable&) {
-			$assign(var$0, $catch());
+		} catch ($Throwable& var$3) {
+			$assign(var$0, var$3);
 		} $finally: {
 			this->this$0->popDefaultClassLoader(old);
 		}
@@ -451,15 +432,14 @@ bool RMIConnector$RemoteMBeanServerConnection::isRegistered($ObjectName* name) {
 				var$2 = $nc(this->this$0->connection)->isRegistered(name, this->delegationSubject);
 				return$1 = true;
 				goto $finally;
-			} catch ($IOException&) {
-				$var($IOException, ioe, $catch());
+			} catch ($IOException& ioe) {
 				$nc(this->this$0->communicatorAdmin)->gotIOException(ioe);
 				var$2 = $nc(this->this$0->connection)->isRegistered(name, this->delegationSubject);
 				return$1 = true;
 				goto $finally;
 			}
-		} catch ($Throwable&) {
-			$assign(var$0, $catch());
+		} catch ($Throwable& var$3) {
+			$assign(var$0, var$3);
 		} $finally: {
 			this->this$0->popDefaultClassLoader(old);
 		}
@@ -489,15 +469,14 @@ $Integer* RMIConnector$RemoteMBeanServerConnection::getMBeanCount() {
 				$assign(var$2, $nc(this->this$0->connection)->getMBeanCount(this->delegationSubject));
 				return$1 = true;
 				goto $finally;
-			} catch ($IOException&) {
-				$var($IOException, ioe, $catch());
+			} catch ($IOException& ioe) {
 				$nc(this->this$0->communicatorAdmin)->gotIOException(ioe);
 				$assign(var$2, $nc(this->this$0->connection)->getMBeanCount(this->delegationSubject));
 				return$1 = true;
 				goto $finally;
 			}
-		} catch ($Throwable&) {
-			$assign(var$0, $catch());
+		} catch ($Throwable& var$3) {
+			$assign(var$0, var$3);
 		} $finally: {
 			this->this$0->popDefaultClassLoader(old);
 		}
@@ -527,15 +506,14 @@ $Object* RMIConnector$RemoteMBeanServerConnection::getAttribute($ObjectName* nam
 				$assign(var$2, $nc(this->this$0->connection)->getAttribute(name, attribute, this->delegationSubject));
 				return$1 = true;
 				goto $finally;
-			} catch ($IOException&) {
-				$var($IOException, ioe, $catch());
+			} catch ($IOException& ioe) {
 				$nc(this->this$0->communicatorAdmin)->gotIOException(ioe);
 				$assign(var$2, $nc(this->this$0->connection)->getAttribute(name, attribute, this->delegationSubject));
 				return$1 = true;
 				goto $finally;
 			}
-		} catch ($Throwable&) {
-			$assign(var$0, $catch());
+		} catch ($Throwable& var$3) {
+			$assign(var$0, var$3);
 		} $finally: {
 			this->this$0->popDefaultClassLoader(old);
 		}
@@ -566,15 +544,14 @@ $AttributeList* RMIConnector$RemoteMBeanServerConnection::getAttributes($ObjectN
 				$assign(var$3, $nc(this->this$0->connection)->getAttributes(name, attributes, this->delegationSubject));
 				return$2 = true;
 				goto $finally;
-			} catch ($IOException&) {
-				$var($IOException, ioe, $catch());
+			} catch ($IOException& ioe) {
 				$nc(this->this$0->communicatorAdmin)->gotIOException(ioe);
 				$assign(var$3, $nc(this->this$0->connection)->getAttributes(name, attributes, this->delegationSubject));
 				return$2 = true;
 				goto $finally;
 			}
-		} catch ($Throwable&) {
-			$assign(var$1, $catch());
+		} catch ($Throwable& var$4) {
+			$assign(var$1, var$4);
 		} $finally: {
 			this->this$0->popDefaultClassLoader(old);
 		}
@@ -602,13 +579,12 @@ void RMIConnector$RemoteMBeanServerConnection::setAttribute($ObjectName* name, $
 		try {
 			try {
 				$nc(this->this$0->connection)->setAttribute(name, sAttribute, this->delegationSubject);
-			} catch ($IOException&) {
-				$var($IOException, ioe, $catch());
+			} catch ($IOException& ioe) {
 				$nc(this->this$0->communicatorAdmin)->gotIOException(ioe);
 				$nc(this->this$0->connection)->setAttribute(name, sAttribute, this->delegationSubject);
 			}
-		} catch ($Throwable&) {
-			$assign(var$1, $catch());
+		} catch ($Throwable& var$2) {
+			$assign(var$1, var$2);
 		} /*finally*/ {
 			this->this$0->popDefaultClassLoader(old);
 		}
@@ -636,15 +612,14 @@ $AttributeList* RMIConnector$RemoteMBeanServerConnection::setAttributes($ObjectN
 				$assign(var$3, $nc(this->this$0->connection)->setAttributes(name, sAttributes, this->delegationSubject));
 				return$2 = true;
 				goto $finally;
-			} catch ($IOException&) {
-				$var($IOException, ioe, $catch());
+			} catch ($IOException& ioe) {
 				$nc(this->this$0->communicatorAdmin)->gotIOException(ioe);
 				$assign(var$3, $nc(this->this$0->connection)->setAttributes(name, sAttributes, this->delegationSubject));
 				return$2 = true;
 				goto $finally;
 			}
-		} catch ($Throwable&) {
-			$assign(var$1, $catch());
+		} catch ($Throwable& var$4) {
+			$assign(var$1, var$4);
 		} $finally: {
 			this->this$0->popDefaultClassLoader(old);
 		}
@@ -676,15 +651,14 @@ $Object* RMIConnector$RemoteMBeanServerConnection::invoke($ObjectName* name, $St
 				$assign(var$3, $nc(this->this$0->connection)->invoke(name, operationName, sParams, signature, this->delegationSubject));
 				return$2 = true;
 				goto $finally;
-			} catch ($IOException&) {
-				$var($IOException, ioe, $catch());
+			} catch ($IOException& ioe) {
 				$nc(this->this$0->communicatorAdmin)->gotIOException(ioe);
 				$assign(var$3, $nc(this->this$0->connection)->invoke(name, operationName, sParams, signature, this->delegationSubject));
 				return$2 = true;
 				goto $finally;
 			}
-		} catch ($Throwable&) {
-			$assign(var$1, $catch());
+		} catch ($Throwable& var$4) {
+			$assign(var$1, var$4);
 		} $finally: {
 			this->this$0->popDefaultClassLoader(old);
 		}
@@ -714,15 +688,14 @@ $String* RMIConnector$RemoteMBeanServerConnection::getDefaultDomain() {
 				$assign(var$2, $nc(this->this$0->connection)->getDefaultDomain(this->delegationSubject));
 				return$1 = true;
 				goto $finally;
-			} catch ($IOException&) {
-				$var($IOException, ioe, $catch());
+			} catch ($IOException& ioe) {
 				$nc(this->this$0->communicatorAdmin)->gotIOException(ioe);
 				$assign(var$2, $nc(this->this$0->connection)->getDefaultDomain(this->delegationSubject));
 				return$1 = true;
 				goto $finally;
 			}
-		} catch ($Throwable&) {
-			$assign(var$0, $catch());
+		} catch ($Throwable& var$3) {
+			$assign(var$0, var$3);
 		} $finally: {
 			this->this$0->popDefaultClassLoader(old);
 		}
@@ -752,15 +725,14 @@ $StringArray* RMIConnector$RemoteMBeanServerConnection::getDomains() {
 				$assign(var$2, $nc(this->this$0->connection)->getDomains(this->delegationSubject));
 				return$1 = true;
 				goto $finally;
-			} catch ($IOException&) {
-				$var($IOException, ioe, $catch());
+			} catch ($IOException& ioe) {
 				$nc(this->this$0->communicatorAdmin)->gotIOException(ioe);
 				$assign(var$2, $nc(this->this$0->connection)->getDomains(this->delegationSubject));
 				return$1 = true;
 				goto $finally;
 			}
-		} catch ($Throwable&) {
-			$assign(var$0, $catch());
+		} catch ($Throwable& var$3) {
+			$assign(var$0, var$3);
 		} $finally: {
 			this->this$0->popDefaultClassLoader(old);
 		}
@@ -790,15 +762,14 @@ $MBeanInfo* RMIConnector$RemoteMBeanServerConnection::getMBeanInfo($ObjectName* 
 				$assign(var$2, $nc(this->this$0->connection)->getMBeanInfo(name, this->delegationSubject));
 				return$1 = true;
 				goto $finally;
-			} catch ($IOException&) {
-				$var($IOException, ioe, $catch());
+			} catch ($IOException& ioe) {
 				$nc(this->this$0->communicatorAdmin)->gotIOException(ioe);
 				$assign(var$2, $nc(this->this$0->connection)->getMBeanInfo(name, this->delegationSubject));
 				return$1 = true;
 				goto $finally;
 			}
-		} catch ($Throwable&) {
-			$assign(var$0, $catch());
+		} catch ($Throwable& var$3) {
+			$assign(var$0, var$3);
 		} $finally: {
 			this->this$0->popDefaultClassLoader(old);
 		}
@@ -828,15 +799,14 @@ bool RMIConnector$RemoteMBeanServerConnection::isInstanceOf($ObjectName* name, $
 				var$2 = $nc(this->this$0->connection)->isInstanceOf(name, className, this->delegationSubject);
 				return$1 = true;
 				goto $finally;
-			} catch ($IOException&) {
-				$var($IOException, ioe, $catch());
+			} catch ($IOException& ioe) {
 				$nc(this->this$0->communicatorAdmin)->gotIOException(ioe);
 				var$2 = $nc(this->this$0->connection)->isInstanceOf(name, className, this->delegationSubject);
 				return$1 = true;
 				goto $finally;
 			}
-		} catch ($Throwable&) {
-			$assign(var$0, $catch());
+		} catch ($Throwable& var$3) {
+			$assign(var$0, var$3);
 		} $finally: {
 			this->this$0->popDefaultClassLoader(old);
 		}
@@ -864,13 +834,12 @@ void RMIConnector$RemoteMBeanServerConnection::addNotificationListener($ObjectNa
 		try {
 			try {
 				$nc(this->this$0->connection)->addNotificationListener(name, listener, sFilter, sHandback, this->delegationSubject);
-			} catch ($IOException&) {
-				$var($IOException, ioe, $catch());
+			} catch ($IOException& ioe) {
 				$nc(this->this$0->communicatorAdmin)->gotIOException(ioe);
 				$nc(this->this$0->connection)->addNotificationListener(name, listener, sFilter, sHandback, this->delegationSubject);
 			}
-		} catch ($Throwable&) {
-			$assign(var$0, $catch());
+		} catch ($Throwable& var$1) {
+			$assign(var$0, var$1);
 		} /*finally*/ {
 			this->this$0->popDefaultClassLoader(old);
 		}
@@ -892,13 +861,12 @@ void RMIConnector$RemoteMBeanServerConnection::removeNotificationListener($Objec
 		try {
 			try {
 				$nc(this->this$0->connection)->removeNotificationListener(name, listener, this->delegationSubject);
-			} catch ($IOException&) {
-				$var($IOException, ioe, $catch());
+			} catch ($IOException& ioe) {
 				$nc(this->this$0->communicatorAdmin)->gotIOException(ioe);
 				$nc(this->this$0->connection)->removeNotificationListener(name, listener, this->delegationSubject);
 			}
-		} catch ($Throwable&) {
-			$assign(var$0, $catch());
+		} catch ($Throwable& var$1) {
+			$assign(var$0, var$1);
 		} /*finally*/ {
 			this->this$0->popDefaultClassLoader(old);
 		}
@@ -922,13 +890,12 @@ void RMIConnector$RemoteMBeanServerConnection::removeNotificationListener($Objec
 		try {
 			try {
 				$nc(this->this$0->connection)->removeNotificationListener(name, listener, sFilter, sHandback, this->delegationSubject);
-			} catch ($IOException&) {
-				$var($IOException, ioe, $catch());
+			} catch ($IOException& ioe) {
 				$nc(this->this$0->communicatorAdmin)->gotIOException(ioe);
 				$nc(this->this$0->connection)->removeNotificationListener(name, listener, sFilter, sHandback, this->delegationSubject);
 			}
-		} catch ($Throwable&) {
-			$assign(var$0, $catch());
+		} catch ($Throwable& var$1) {
+			$assign(var$0, var$1);
 		} /*finally*/ {
 			this->this$0->popDefaultClassLoader(old);
 		}
@@ -966,13 +933,12 @@ void RMIConnector$RemoteMBeanServerConnection::removeNotificationListener($Objec
 		try {
 			try {
 				$nc(this->this$0->connection)->removeNotificationListeners(name, ret, this->delegationSubject);
-			} catch ($IOException&) {
-				$var($IOException, ioe, $catch());
+			} catch ($IOException& ioe) {
 				$nc(this->this$0->communicatorAdmin)->gotIOException(ioe);
 				$nc(this->this$0->connection)->removeNotificationListeners(name, ret, this->delegationSubject);
 			}
-		} catch ($Throwable&) {
-			$assign(var$0, $catch());
+		} catch ($Throwable& var$1) {
+			$assign(var$0, var$1);
 		} /*finally*/ {
 			this->this$0->popDefaultClassLoader(old);
 		}
@@ -1000,13 +966,12 @@ void RMIConnector$RemoteMBeanServerConnection::removeNotificationListener($Objec
 		try {
 			try {
 				$nc(this->this$0->connection)->removeNotificationListeners(name, $$new($IntegerArray, {ret}), this->delegationSubject);
-			} catch ($IOException&) {
-				$var($IOException, ioe, $catch());
+			} catch ($IOException& ioe) {
 				$nc(this->this$0->communicatorAdmin)->gotIOException(ioe);
 				$nc(this->this$0->connection)->removeNotificationListeners(name, $$new($IntegerArray, {ret}), this->delegationSubject);
 			}
-		} catch ($Throwable&) {
-			$assign(var$0, $catch());
+		} catch ($Throwable& var$1) {
+			$assign(var$0, var$1);
 		} /*finally*/ {
 			this->this$0->popDefaultClassLoader(old);
 		}

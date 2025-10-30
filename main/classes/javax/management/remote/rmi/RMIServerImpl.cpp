@@ -7,22 +7,10 @@
 #include <java/io/Closeable.h>
 #include <java/io/IOException.h>
 #include <java/lang/CharSequence.h>
-#include <java/lang/Class.h>
-#include <java/lang/ClassInfo.h>
 #include <java/lang/ClassLoader.h>
-#include <java/lang/Exception.h>
-#include <java/lang/FieldInfo.h>
 #include <java/lang/IllegalStateException.h>
-#include <java/lang/MethodInfo.h>
-#include <java/lang/NullPointerException.h>
 #include <java/lang/SecurityException.h>
-#include <java/lang/String.h>
-#include <java/lang/StringBuilder.h>
-#include <java/lang/System.h>
-#include <java/lang/Throwable.h>
 #include <java/lang/ref/WeakReference.h>
-#include <java/lang/reflect/Constructor.h>
-#include <java/lang/reflect/Method.h>
 #include <java/rmi/server/RemoteServer.h>
 #include <java/rmi/server/ServerNotActiveException.h>
 #include <java/security/Principal.h>
@@ -195,11 +183,9 @@ $MBeanServer* RMIServerImpl::getMBeanServer() {
 }
 
 $String* RMIServerImpl::getVersion() {
-	$useLocalCurrentObjectStackCache();
 	try {
 		return $str({"1.0 java_runtime_"_s, $($System::getProperty("java.runtime.version"_s))});
-	} catch ($SecurityException&) {
-		$var($SecurityException, e, $catch());
+	} catch ($SecurityException& e) {
 		return "1.0 "_s;
 	}
 	$shouldNotReachHere();
@@ -233,8 +219,7 @@ $RMIConnection* RMIServerImpl::doNewClient(Object$* credentials) {
 		}
 		try {
 			$assign(subject, authenticator->authenticate(credentials));
-		} catch ($SecurityException&) {
-			$var($SecurityException, e, $catch());
+		} catch ($SecurityException& e) {
 			$nc(RMIServerImpl::logger)->trace("newClient"_s, $$str({"Authentication failed: "_s, e}));
 			$throw(e);
 		}
@@ -317,8 +302,7 @@ void RMIServerImpl::close() {
 				$nc(RMIServerImpl::logger)->debug("close"_s, "closing Server"_s);
 			}
 			closeServer();
-		} catch ($IOException&) {
-			$var($IOException, e, $catch());
+		} catch ($IOException& e) {
 			if (tracing) {
 				$nc(RMIServerImpl::logger)->trace("close"_s, $$str({"Failed to close server: "_s, e}));
 			}
@@ -351,8 +335,7 @@ void RMIServerImpl::close() {
 						if (client != nullptr) {
 							try {
 								client->close();
-							} catch ($IOException&) {
-								$var($IOException, e, $catch());
+							} catch ($IOException& e) {
 								if (tracing) {
 									$nc(RMIServerImpl::logger)->trace("close"_s, $$str({"Failed to close client: "_s, e}));
 								}
@@ -396,8 +379,7 @@ $String* RMIServerImpl::makeConnectionId($String* protocol, $Subject* subject) {
 			if ($nc(clientHost)->contains(":"_s)) {
 				$assign(clientHost, $str({"["_s, clientHost, "]"_s}));
 			}
-		} catch ($ServerNotActiveException&) {
-			$var($ServerNotActiveException, e, $catch());
+		} catch ($ServerNotActiveException& e) {
 			$nc(RMIServerImpl::logger)->trace("makeConnectionId"_s, "getClientHost"_s, e);
 		}
 		$var($StringBuilder, buf, $new($StringBuilder));

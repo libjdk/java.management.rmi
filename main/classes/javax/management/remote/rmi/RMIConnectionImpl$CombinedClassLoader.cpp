@@ -1,18 +1,7 @@
 #include <javax/management/remote/rmi/RMIConnectionImpl$CombinedClassLoader.h>
 
-#include <java/lang/Class.h>
-#include <java/lang/ClassInfo.h>
 #include <java/lang/ClassLoader.h>
-#include <java/lang/Exception.h>
-#include <java/lang/FieldInfo.h>
-#include <java/lang/InnerClassInfo.h>
-#include <java/lang/MethodInfo.h>
-#include <java/lang/NullPointerException.h>
 #include <java/lang/SecurityException.h>
-#include <java/lang/String.h>
-#include <java/lang/Throwable.h>
-#include <java/lang/reflect/Constructor.h>
-#include <java/lang/reflect/Method.h>
 #include <javax/management/remote/rmi/RMIConnectionImpl$CombinedClassLoader$ClassLoaderWrapper.h>
 #include <javax/management/remote/rmi/RMIConnectionImpl.h>
 #include <sun/reflect/misc/ReflectUtil.h>
@@ -82,8 +71,7 @@ $Class* RMIConnectionImpl$CombinedClassLoader::loadClass($String* name, bool res
 	$ReflectUtil::checkPackageAccess(name);
 	try {
 		$ClassLoader::loadClass(name, resolve);
-	} catch ($Exception&) {
-		$var($Exception, e, $catch());
+	} catch ($Exception& e) {
 		{
 			$var($Throwable, t, e);
 			for (; t != nullptr; $assign(t, t->getCause())) {

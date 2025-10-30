@@ -1,22 +1,13 @@
 #include <javax/management/remote/rmi/RMIConnector$1.h>
 
 #include <com/sun/jmx/remote/internal/rmi/ProxyRef.h>
-#include <java/lang/Array.h>
 #include <java/lang/AssertionError.h>
-#include <java/lang/Class.h>
-#include <java/lang/ClassInfo.h>
 #include <java/lang/ClassLoader.h>
-#include <java/lang/EnclosingMethodInfo.h>
-#include <java/lang/FieldInfo.h>
-#include <java/lang/InnerClassInfo.h>
-#include <java/lang/MethodInfo.h>
 #include <java/lang/Module.h>
-#include <java/lang/String.h>
 #include <java/lang/module/ModuleDescriptor$Builder.h>
 #include <java/lang/module/ModuleDescriptor$Modifier.h>
 #include <java/lang/module/ModuleDescriptor.h>
 #include <java/lang/reflect/Constructor.h>
-#include <java/lang/reflect/Method.h>
 #include <java/net/URI.h>
 #include <java/rmi/server/RemoteRef.h>
 #include <java/security/ProtectionDomain.h>
@@ -129,7 +120,6 @@ $Object* RMIConnector$1::run() {
 	$init($ModuleDescriptor$Modifier);
 	$var($ModuleDescriptor, descriptor, $nc($($nc($($ModuleDescriptor::newModule("jdk.remoteref"_s, $($Set::of($of($ModuleDescriptor$Modifier::SYNTHETIC))))))->packages($($Set::of($of(pkg))))))->build());
 	$var($Module, m, $Modules::defineModule(cl, descriptor, nullptr));
-	$load($Object);
 	$Modules::addReads(m, $($Object::class$->getModule()));
 	$Modules::addReads(m, jmxModule);
 	$Modules::addReads(m, rmiModule);

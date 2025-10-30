@@ -1,18 +1,8 @@
 #include <javax/management/remote/rmi/RMIServerImpl_Stub.h>
 
 #include <java/io/IOException.h>
-#include <java/lang/Array.h>
-#include <java/lang/Class.h>
-#include <java/lang/ClassInfo.h>
-#include <java/lang/Exception.h>
-#include <java/lang/FieldInfo.h>
-#include <java/lang/MethodInfo.h>
 #include <java/lang/NoSuchMethodError.h>
 #include <java/lang/NoSuchMethodException.h>
-#include <java/lang/NullPointerException.h>
-#include <java/lang/RuntimeException.h>
-#include <java/lang/String.h>
-#include <java/lang/reflect/Constructor.h>
 #include <java/lang/reflect/Method.h>
 #include <java/rmi/Remote.h>
 #include <java/rmi/RemoteException.h>
@@ -108,18 +98,14 @@ void RMIServerImpl_Stub::init$($RemoteRef* ref) {
 }
 
 $String* RMIServerImpl_Stub::getVersion() {
-	$useLocalCurrentObjectStackCache();
 	try {
 		$var($Object, $result, $nc(this->ref)->invoke(static_cast<$Remote*>(static_cast<$RemoteObject*>(static_cast<$RemoteStub*>(this))), RMIServerImpl_Stub::$method_getVersion_0, nullptr, 0x8FDA2350C701988D));
 		return ($cast($String, $result));
-	} catch ($RuntimeException&) {
-		$var($RuntimeException, e, $catch());
+	} catch ($RuntimeException& e) {
 		$throw(e);
-	} catch ($RemoteException&) {
-		$var($RemoteException, e, $catch());
+	} catch ($RemoteException& e) {
 		$throw(e);
-	} catch ($Exception&) {
-		$var($Exception, e, $catch());
+	} catch ($Exception& e) {
 		$throwNew($UnexpectedException, "undeclared checked exception"_s, e);
 	}
 	$shouldNotReachHere();
@@ -130,14 +116,11 @@ $RMIConnection* RMIServerImpl_Stub::newClient(Object$* $param_Object_1) {
 	try {
 		$var($Object, $result, $nc(this->ref)->invoke(static_cast<$Remote*>(static_cast<$RemoteObject*>(static_cast<$RemoteStub*>(this))), RMIServerImpl_Stub::$method_newClient_1, $$new($ObjectArray, {$param_Object_1}), 0xF0E074EAAD0CAEA8));
 		return ($cast($RMIConnection, $result));
-	} catch ($RuntimeException&) {
-		$var($RuntimeException, e, $catch());
+	} catch ($RuntimeException& e) {
 		$throw(e);
-	} catch ($IOException&) {
-		$var($IOException, e, $catch());
+	} catch ($IOException& e) {
 		$throw(e);
-	} catch ($Exception&) {
-		$var($Exception, e, $catch());
+	} catch ($Exception& e) {
 		$throwNew($UnexpectedException, "undeclared checked exception"_s, e);
 	}
 	$shouldNotReachHere();
@@ -150,10 +133,8 @@ void clinit$RMIServerImpl_Stub($Class* class$) {
 		try {
 			$load($RMIServer);
 			$assignStatic(RMIServerImpl_Stub::$method_getVersion_0, $RMIServer::class$->getMethod("getVersion"_s, $$new($ClassArray, 0)));
-			$load($Object);
 			$assignStatic(RMIServerImpl_Stub::$method_newClient_1, $RMIServer::class$->getMethod("newClient"_s, $$new($ClassArray, {$Object::class$})));
-		} catch ($NoSuchMethodException&) {
-			$var($NoSuchMethodException, e, $catch());
+		} catch ($NoSuchMethodException& e) {
 			$throwNew($NoSuchMethodError, "stub class initialization failed"_s);
 		}
 	}

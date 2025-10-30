@@ -4,21 +4,7 @@
 #include <com/sun/jmx/remote/internal/ClientNotifForwarder.h>
 #include <java/io/IOException.h>
 #include <java/io/NotSerializableException.h>
-#include <java/lang/Array.h>
-#include <java/lang/Class.h>
-#include <java/lang/ClassInfo.h>
 #include <java/lang/ClassLoader.h>
-#include <java/lang/Exception.h>
-#include <java/lang/FieldInfo.h>
-#include <java/lang/InnerClassInfo.h>
-#include <java/lang/Integer.h>
-#include <java/lang/Long.h>
-#include <java/lang/MethodInfo.h>
-#include <java/lang/NullPointerException.h>
-#include <java/lang/String.h>
-#include <java/lang/Throwable.h>
-#include <java/lang/reflect/Constructor.h>
-#include <java/lang/reflect/Method.h>
 #include <java/rmi/MarshalledObject.h>
 #include <java/rmi/UnmarshalException.h>
 #include <java/util/Map.h>
@@ -128,13 +114,11 @@ $NotificationResult* RMIConnector$RMINotifClient::fetchNotifs(int64_t clientSequ
 	while (true) {
 		try {
 			return $nc(this->this$0->connection)->fetchNotifications(clientSequenceNumber, maxNotifications, timeout);
-		} catch ($IOException&) {
-			$var($IOException, ioe, $catch());
+		} catch ($IOException& ioe) {
 			rethrowDeserializationException(ioe);
 			try {
 				$nc(this->this$0->communicatorAdmin)->gotIOException(ioe);
-			} catch ($IOException&) {
-				$var($IOException, ee, $catch());
+			} catch ($IOException& ee) {
 				bool toClose = false;
 				$synchronized(this) {
 					if (this->this$0->terminated) {
@@ -151,8 +135,7 @@ $NotificationResult* RMIConnector$RMINotifClient::fetchNotifs(int64_t clientSequ
 					this->this$0->sendNotification(failedNotif);
 					try {
 						this->this$0->close(true);
-					} catch ($Exception&) {
-						$catch();
+					} catch ($Exception& e) {
 					}
 					$throw(ioe);
 				} else {
@@ -185,8 +168,7 @@ $Integer* RMIConnector$RMINotifClient::addListenerForMBeanRemovedNotif() {
 	$var($SubjectArray, subjects, $new($SubjectArray, {($Subject*)nullptr}));
 	try {
 		$assign(listenerIDs, $nc(this->this$0->connection)->addNotificationListeners(names, filters, subjects));
-	} catch ($IOException&) {
-		$var($IOException, ioe, $catch());
+	} catch ($IOException& ioe) {
 		$nc(this->this$0->communicatorAdmin)->gotIOException(ioe);
 		$assign(listenerIDs, $nc(this->this$0->connection)->addNotificationListeners(names, filters, subjects));
 	}
@@ -198,8 +180,7 @@ void RMIConnector$RMINotifClient::removeListenerForMBeanRemovedNotif($Integer* i
 	try {
 		$init($MBeanServerDelegate);
 		$nc(this->this$0->connection)->removeNotificationListeners($MBeanServerDelegate::DELEGATE_NAME, $$new($IntegerArray, {id}), nullptr);
-	} catch ($IOException&) {
-		$var($IOException, ioe, $catch());
+	} catch ($IOException& ioe) {
 		$nc(this->this$0->communicatorAdmin)->gotIOException(ioe);
 		$init($MBeanServerDelegate);
 		$nc(this->this$0->connection)->removeNotificationListeners($MBeanServerDelegate::DELEGATE_NAME, $$new($IntegerArray, {id}), nullptr);

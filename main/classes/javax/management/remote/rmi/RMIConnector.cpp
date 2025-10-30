@@ -10,25 +10,10 @@
 #include <java/io/ObjectInputStream.h>
 #include <java/io/ObjectOutputStream.h>
 #include <java/io/Serializable.h>
-#include <java/lang/Array.h>
 #include <java/lang/CharSequence.h>
-#include <java/lang/Class.h>
-#include <java/lang/ClassInfo.h>
 #include <java/lang/ClassLoader.h>
 #include <java/lang/ClassNotFoundException.h>
-#include <java/lang/Exception.h>
-#include <java/lang/FieldInfo.h>
-#include <java/lang/IllegalArgumentException.h>
-#include <java/lang/InnerClassInfo.h>
-#include <java/lang/Integer.h>
-#include <java/lang/MethodInfo.h>
-#include <java/lang/NullPointerException.h>
-#include <java/lang/RuntimeException.h>
 #include <java/lang/SecurityException.h>
-#include <java/lang/String.h>
-#include <java/lang/StringBuilder.h>
-#include <java/lang/Thread.h>
-#include <java/lang/Throwable.h>
 #include <java/lang/invoke/CallSite.h>
 #include <java/lang/invoke/LambdaMetafactory.h>
 #include <java/lang/invoke/MethodHandle.h>
@@ -37,7 +22,6 @@
 #include <java/lang/ref/WeakReference.h>
 #include <java/lang/reflect/Constructor.h>
 #include <java/lang/reflect/InvocationHandler.h>
-#include <java/lang/reflect/Method.h>
 #include <java/lang/reflect/Proxy.h>
 #include <java/net/MalformedURLException.h>
 #include <java/rmi/MarshalledObject.h>
@@ -361,9 +345,7 @@ $String* RMIConnector::rmiConnectionImplStubClassName = nullptr;
 $Class* RMIConnector::rmiConnectionImplStubClass = nullptr;
 $String* RMIConnector::pRefClassName = nullptr;
 $Constructor* RMIConnector::proxyRefConstructor = nullptr;
-
 $bytes* RMIConnector::base64ToInt = nullptr;
-
 $volatile($WeakReference*) RMIConnector::orb = nullptr;
 
 void RMIConnector::init$($RMIServer* rmiServer, $JMXServiceURL* address, $Map* environment) {
@@ -458,8 +440,7 @@ void RMIConnector::connect($Map* environment) {
 			$var($Object, credentials, usemap->get($JMXConnector::CREDENTIALS));
 			try {
 				$set(this, connection, getConnection(stub, credentials, checkStub));
-			} catch ($RemoteException&) {
-				$var($RemoteException, re, $catch());
+			} catch ($RemoteException& re) {
 				$throw(re);
 			}
 			if (tracing) {
@@ -480,20 +461,17 @@ void RMIConnector::connect($Map* environment) {
 			if (tracing) {
 				$nc(RMIConnector::logger)->trace("connect"_s, $$str({idstr, " done..."_s}));
 			}
-		} catch ($IOException&) {
-			$var($IOException, e, $catch());
+		} catch ($IOException& e) {
 			if (tracing) {
 				$nc(RMIConnector::logger)->trace("connect"_s, $$str({idstr, " failed to connect: "_s, e}));
 			}
 			$throw(e);
-		} catch ($RuntimeException&) {
-			$var($RuntimeException, e, $catch());
+		} catch ($RuntimeException& e) {
 			if (tracing) {
 				$nc(RMIConnector::logger)->trace("connect"_s, $$str({idstr, " failed to connect: "_s, e}));
 			}
 			$throw(e);
-		} catch ($NamingException&) {
-			$var($NamingException, e, $catch());
+		} catch ($NamingException& e) {
 			$var($String, msg, $str({"Failed to retrieve RMIServer stub: "_s, e}));
 			if (tracing) {
 				$nc(RMIConnector::logger)->trace("connect"_s, $$str({idstr, " "_s, msg}));
@@ -612,8 +590,7 @@ void RMIConnector::close(bool intern) {
 				if (tracing) {
 					$nc(RMIConnector::logger)->trace("close"_s, $$str({idstr, " RMI Notification client terminated."_s}));
 				}
-			} catch ($RuntimeException&) {
-				$var($RuntimeException, x, $catch());
+			} catch ($RuntimeException& x) {
 				$set(this, closeException, x);
 				if (tracing) {
 					$nc(RMIConnector::logger)->trace("close"_s, $$str({idstr, " Failed to terminate RMI Notification client: "_s, x}));
@@ -629,10 +606,8 @@ void RMIConnector::close(bool intern) {
 				if (tracing) {
 					$nc(RMIConnector::logger)->trace("close"_s, $$str({idstr, " closed."_s}));
 				}
-			} catch ($NoSuchObjectException&) {
-				$catch();
-			} catch ($IOException&) {
-				$var($IOException, e, $catch());
+			} catch ($NoSuchObjectException& nse) {
+			} catch ($IOException& e) {
 				$set(this, closeException, e);
 				if (tracing) {
 					$nc(RMIConnector::logger)->trace("close"_s, $$str({idstr, " Failed to close RMIServer: "_s, e}));
@@ -693,20 +668,18 @@ $IntegerArray* RMIConnector::addListenersWithSubjects($ObjectNameArray* names, $
 		try {
 			try {
 				$assign(listenerIDs, $nc(this->connection)->addNotificationListeners(names, filters, delegationSubjects));
-			} catch ($NoSuchObjectException&) {
-				$var($NoSuchObjectException, noe, $catch());
+			} catch ($NoSuchObjectException& noe) {
 				if (reconnect) {
 					$nc(this->communicatorAdmin)->gotIOException(noe);
 					$assign(listenerIDs, $nc(this->connection)->addNotificationListeners(names, filters, delegationSubjects));
 				} else {
 					$throw(noe);
 				}
-			} catch ($IOException&) {
-				$var($IOException, ioe, $catch());
+			} catch ($IOException& ioe) {
 				$nc(this->communicatorAdmin)->gotIOException(ioe);
 			}
-		} catch ($Throwable&) {
-			$assign(var$0, $catch());
+		} catch ($Throwable& var$1) {
+			$assign(var$0, var$1);
 		} /*finally*/ {
 			popDefaultClassLoader(old);
 		}
@@ -808,8 +781,7 @@ $RMIServer* RMIConnector::findRMIServerJRMP($String* base64, $Map* env) {
 	$var($bytes, serialized, nullptr);
 	try {
 		$assign(serialized, base64ToByteArray(base64));
-	} catch ($IllegalArgumentException&) {
-		$var($IllegalArgumentException, e, $catch());
+	} catch ($IllegalArgumentException& e) {
 		$throwNew($MalformedURLException, $$str({"Bad BASE64 encoding: "_s, $(e->getMessage())}));
 	}
 	$var($ByteArrayInputStream, bin, $new($ByteArrayInputStream, serialized));
@@ -818,8 +790,7 @@ $RMIServer* RMIConnector::findRMIServerJRMP($String* base64, $Map* env) {
 	$var($Object, stub, nullptr);
 	try {
 		$assign(stub, $nc(oin)->readObject());
-	} catch ($ClassNotFoundException&) {
-		$var($ClassNotFoundException, e, $catch());
+	} catch ($ClassNotFoundException& e) {
 		$throwNew($MalformedURLException, $$str({"Class not found: "_s, e}));
 	}
 	return $cast($RMIServer, stub);
@@ -874,8 +845,7 @@ $RMIConnection* RMIConnector::getConnection($RMIServer* server, Object$* credent
 			return shadowJrmpStub($cast($RemoteObject, c));
 		}
 		$nc(RMIConnector::logger)->trace("getConnection"_s, $$str({"Did not wrap "_s, $nc($of(c))->getClass(), " to foil stack search for classes: class loading semantics may be incorrect"_s}));
-	} catch ($Exception&) {
-		$var($Exception, e, $catch());
+	} catch ($Exception& e) {
 		$nc(RMIConnector::logger)->error("getConnection"_s, $$str({"Could not wrap "_s, $nc($of(c))->getClass(), " to foil stack search for classes: class loading semantics may be incorrect: "_s, e}));
 		$nc(RMIConnector::logger)->debug("getConnection"_s, static_cast<$Throwable*>(e));
 	}
@@ -992,8 +962,7 @@ void clinit$RMIConnector($Class* class$) {
 		$Class* serverStubClass = nullptr;
 		try {
 			serverStubClass = $Class::forName(RMIConnector::rmiServerImplStubClassName);
-		} catch ($Exception&) {
-			$var($Exception, e, $catch());
+		} catch ($Exception& e) {
 			$nc(RMIConnector::logger)->error("<clinit>"_s, $$str({"Failed to instantiate "_s, RMIConnector::rmiServerImplStubClassName, ": "_s, e}));
 			$nc(RMIConnector::logger)->debug("<clinit>"_s, static_cast<$Throwable*>(e));
 			serverStubClass = nullptr;
@@ -1005,8 +974,7 @@ void clinit$RMIConnector($Class* class$) {
 			stubClass = $Class::forName(RMIConnector::rmiConnectionImplStubClassName);
 			$var($Constructor, tmp, $cast($Constructor, $AccessController::doPrivileged(action)));
 			$assign(constr, tmp);
-		} catch ($Exception&) {
-			$var($Exception, e, $catch());
+		} catch ($Exception& e) {
 			$nc(RMIConnector::logger)->error("<clinit>"_s, $$str({"Failed to initialize proxy reference constructor for "_s, RMIConnector::rmiConnectionImplStubClassName, ": "_s, e}));
 			$nc(RMIConnector::logger)->debug("<clinit>"_s, static_cast<$Throwable*>(e));
 			stubClass = nullptr;

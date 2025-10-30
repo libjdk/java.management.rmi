@@ -1,22 +1,9 @@
 #include <javax/management/remote/rmi/RMIConnectionImpl_Stub.h>
 
 #include <java/io/IOException.h>
-#include <java/lang/Array.h>
 #include <java/lang/AutoCloseable.h>
-#include <java/lang/Boolean.h>
-#include <java/lang/Class.h>
-#include <java/lang/ClassInfo.h>
-#include <java/lang/Exception.h>
-#include <java/lang/FieldInfo.h>
-#include <java/lang/Integer.h>
-#include <java/lang/Long.h>
-#include <java/lang/MethodInfo.h>
 #include <java/lang/NoSuchMethodError.h>
 #include <java/lang/NoSuchMethodException.h>
-#include <java/lang/NullPointerException.h>
-#include <java/lang/RuntimeException.h>
-#include <java/lang/String.h>
-#include <java/lang/reflect/Constructor.h>
 #include <java/lang/reflect/Method.h>
 #include <java/rmi/MarshalledObject.h>
 #include <java/rmi/Remote.h>
@@ -229,7 +216,6 @@ void RMIConnectionImpl_Stub::init$($RemoteRef* ref) {
 }
 
 void RMIConnectionImpl_Stub::addNotificationListener($ObjectName* $param_ObjectName_1, $ObjectName* $param_ObjectName_2, $MarshalledObject* $param_MarshalledObject_3, $MarshalledObject* $param_MarshalledObject_4, $Subject* $param_Subject_5) {
-	$useLocalCurrentObjectStackCache();
 	try {
 		$nc(this->ref)->invoke(static_cast<$Remote*>(static_cast<$RemoteObject*>(static_cast<$RemoteStub*>(this))), RMIConnectionImpl_Stub::$method_addNotificationListener_0, $$new($ObjectArray, {
 			$of($param_ObjectName_1),
@@ -238,17 +224,13 @@ void RMIConnectionImpl_Stub::addNotificationListener($ObjectName* $param_ObjectN
 			$of($param_MarshalledObject_4),
 			$of($param_Subject_5)
 		}), 0x88F3B1814F68CCEB);
-	} catch ($RuntimeException&) {
-		$var($RuntimeException, e, $catch());
+	} catch ($RuntimeException& e) {
 		$throw(e);
-	} catch ($IOException&) {
-		$var($IOException, e, $catch());
+	} catch ($IOException& e) {
 		$throw(e);
-	} catch ($InstanceNotFoundException&) {
-		$var($InstanceNotFoundException, e, $catch());
+	} catch ($InstanceNotFoundException& e) {
 		$throw(e);
-	} catch ($Exception&) {
-		$var($Exception, e, $catch());
+	} catch ($Exception& e) {
 		$throwNew($UnexpectedException, "undeclared checked exception"_s, e);
 	}
 }
@@ -262,34 +244,26 @@ $IntegerArray* RMIConnectionImpl_Stub::addNotificationListeners($ObjectNameArray
 			$of($param_arrayOf_Subject_3)
 		}), 0xB6258D6E656D6EEF));
 		return ($cast($IntegerArray, $result));
-	} catch ($RuntimeException&) {
-		$var($RuntimeException, e, $catch());
+	} catch ($RuntimeException& e) {
 		$throw(e);
-	} catch ($IOException&) {
-		$var($IOException, e, $catch());
+	} catch ($IOException& e) {
 		$throw(e);
-	} catch ($InstanceNotFoundException&) {
-		$var($InstanceNotFoundException, e, $catch());
+	} catch ($InstanceNotFoundException& e) {
 		$throw(e);
-	} catch ($Exception&) {
-		$var($Exception, e, $catch());
+	} catch ($Exception& e) {
 		$throwNew($UnexpectedException, "undeclared checked exception"_s, e);
 	}
 	$shouldNotReachHere();
 }
 
 void RMIConnectionImpl_Stub::close() {
-	$useLocalCurrentObjectStackCache();
 	try {
 		$nc(this->ref)->invoke(static_cast<$Remote*>(static_cast<$RemoteObject*>(static_cast<$RemoteStub*>(this))), RMIConnectionImpl_Stub::$method_close_2, nullptr, 0xBE2E5BC7809D0DCC);
-	} catch ($RuntimeException&) {
-		$var($RuntimeException, e, $catch());
+	} catch ($RuntimeException& e) {
 		$throw(e);
-	} catch ($IOException&) {
-		$var($IOException, e, $catch());
+	} catch ($IOException& e) {
 		$throw(e);
-	} catch ($Exception&) {
-		$var($Exception, e, $catch());
+	} catch ($Exception& e) {
 		$throwNew($UnexpectedException, "undeclared checked exception"_s, e);
 	}
 }
@@ -305,26 +279,19 @@ $ObjectInstance* RMIConnectionImpl_Stub::createMBean($String* $param_String_1, $
 			$of($param_Subject_5)
 		}), 0x438DFA6CEA1191A2));
 		return ($cast($ObjectInstance, $result));
-	} catch ($RuntimeException&) {
-		$var($RuntimeException, e, $catch());
+	} catch ($RuntimeException& e) {
 		$throw(e);
-	} catch ($IOException&) {
-		$var($IOException, e, $catch());
+	} catch ($IOException& e) {
 		$throw(e);
-	} catch ($InstanceAlreadyExistsException&) {
-		$var($InstanceAlreadyExistsException, e, $catch());
+	} catch ($InstanceAlreadyExistsException& e) {
 		$throw(e);
-	} catch ($MBeanException&) {
-		$var($MBeanException, e, $catch());
+	} catch ($MBeanException& e) {
 		$throw(e);
-	} catch ($NotCompliantMBeanException&) {
-		$var($NotCompliantMBeanException, e, $catch());
+	} catch ($NotCompliantMBeanException& e) {
 		$throw(e);
-	} catch ($ReflectionException&) {
-		$var($ReflectionException, e, $catch());
+	} catch ($ReflectionException& e) {
 		$throw(e);
-	} catch ($Exception&) {
-		$var($Exception, e, $catch());
+	} catch ($Exception& e) {
 		$throwNew($UnexpectedException, "undeclared checked exception"_s, e);
 	}
 	$shouldNotReachHere();
@@ -342,29 +309,21 @@ $ObjectInstance* RMIConnectionImpl_Stub::createMBean($String* $param_String_1, $
 			$of($param_Subject_6)
 		}), 0xA4567C41A6370B8F));
 		return ($cast($ObjectInstance, $result));
-	} catch ($RuntimeException&) {
-		$var($RuntimeException, e, $catch());
+	} catch ($RuntimeException& e) {
 		$throw(e);
-	} catch ($IOException&) {
-		$var($IOException, e, $catch());
+	} catch ($IOException& e) {
 		$throw(e);
-	} catch ($InstanceAlreadyExistsException&) {
-		$var($InstanceAlreadyExistsException, e, $catch());
+	} catch ($InstanceAlreadyExistsException& e) {
 		$throw(e);
-	} catch ($InstanceNotFoundException&) {
-		$var($InstanceNotFoundException, e, $catch());
+	} catch ($InstanceNotFoundException& e) {
 		$throw(e);
-	} catch ($MBeanException&) {
-		$var($MBeanException, e, $catch());
+	} catch ($MBeanException& e) {
 		$throw(e);
-	} catch ($NotCompliantMBeanException&) {
-		$var($NotCompliantMBeanException, e, $catch());
+	} catch ($NotCompliantMBeanException& e) {
 		$throw(e);
-	} catch ($ReflectionException&) {
-		$var($ReflectionException, e, $catch());
+	} catch ($ReflectionException& e) {
 		$throw(e);
-	} catch ($Exception&) {
-		$var($Exception, e, $catch());
+	} catch ($Exception& e) {
 		$throwNew($UnexpectedException, "undeclared checked exception"_s, e);
 	}
 	$shouldNotReachHere();
@@ -380,29 +339,21 @@ $ObjectInstance* RMIConnectionImpl_Stub::createMBean($String* $param_String_1, $
 			$of($param_Subject_4)
 		}), 0x878C5407AEFC625C));
 		return ($cast($ObjectInstance, $result));
-	} catch ($RuntimeException&) {
-		$var($RuntimeException, e, $catch());
+	} catch ($RuntimeException& e) {
 		$throw(e);
-	} catch ($IOException&) {
-		$var($IOException, e, $catch());
+	} catch ($IOException& e) {
 		$throw(e);
-	} catch ($InstanceAlreadyExistsException&) {
-		$var($InstanceAlreadyExistsException, e, $catch());
+	} catch ($InstanceAlreadyExistsException& e) {
 		$throw(e);
-	} catch ($InstanceNotFoundException&) {
-		$var($InstanceNotFoundException, e, $catch());
+	} catch ($InstanceNotFoundException& e) {
 		$throw(e);
-	} catch ($MBeanException&) {
-		$var($MBeanException, e, $catch());
+	} catch ($MBeanException& e) {
 		$throw(e);
-	} catch ($NotCompliantMBeanException&) {
-		$var($NotCompliantMBeanException, e, $catch());
+	} catch ($NotCompliantMBeanException& e) {
 		$throw(e);
-	} catch ($ReflectionException&) {
-		$var($ReflectionException, e, $catch());
+	} catch ($ReflectionException& e) {
 		$throw(e);
-	} catch ($Exception&) {
-		$var($Exception, e, $catch());
+	} catch ($Exception& e) {
 		$throwNew($UnexpectedException, "undeclared checked exception"_s, e);
 	}
 	$shouldNotReachHere();
@@ -417,26 +368,19 @@ $ObjectInstance* RMIConnectionImpl_Stub::createMBean($String* $param_String_1, $
 			$of($param_Subject_3)
 		}), 0x22D7FD4A906AC8E6));
 		return ($cast($ObjectInstance, $result));
-	} catch ($RuntimeException&) {
-		$var($RuntimeException, e, $catch());
+	} catch ($RuntimeException& e) {
 		$throw(e);
-	} catch ($IOException&) {
-		$var($IOException, e, $catch());
+	} catch ($IOException& e) {
 		$throw(e);
-	} catch ($InstanceAlreadyExistsException&) {
-		$var($InstanceAlreadyExistsException, e, $catch());
+	} catch ($InstanceAlreadyExistsException& e) {
 		$throw(e);
-	} catch ($MBeanException&) {
-		$var($MBeanException, e, $catch());
+	} catch ($MBeanException& e) {
 		$throw(e);
-	} catch ($NotCompliantMBeanException&) {
-		$var($NotCompliantMBeanException, e, $catch());
+	} catch ($NotCompliantMBeanException& e) {
 		$throw(e);
-	} catch ($ReflectionException&) {
-		$var($ReflectionException, e, $catch());
+	} catch ($ReflectionException& e) {
 		$throw(e);
-	} catch ($Exception&) {
-		$var($Exception, e, $catch());
+	} catch ($Exception& e) {
 		$throwNew($UnexpectedException, "undeclared checked exception"_s, e);
 	}
 	$shouldNotReachHere();
@@ -451,14 +395,11 @@ $NotificationResult* RMIConnectionImpl_Stub::fetchNotifications(int64_t $param_l
 			$($of($Long::valueOf($param_long_3)))
 		}), 0xBA171F3DC87C75E2));
 		return ($cast($NotificationResult, $result));
-	} catch ($RuntimeException&) {
-		$var($RuntimeException, e, $catch());
+	} catch ($RuntimeException& e) {
 		$throw(e);
-	} catch ($IOException&) {
-		$var($IOException, e, $catch());
+	} catch ($IOException& e) {
 		$throw(e);
-	} catch ($Exception&) {
-		$var($Exception, e, $catch());
+	} catch ($Exception& e) {
 		$throwNew($UnexpectedException, "undeclared checked exception"_s, e);
 	}
 	$shouldNotReachHere();
@@ -473,26 +414,19 @@ $Object* RMIConnectionImpl_Stub::getAttribute($ObjectName* $param_ObjectName_1, 
 			$of($param_Subject_3)
 		}), 0xF0E0500A394D7215));
 		return $of($result);
-	} catch ($RuntimeException&) {
-		$var($RuntimeException, e, $catch());
+	} catch ($RuntimeException& e) {
 		$throw(e);
-	} catch ($IOException&) {
-		$var($IOException, e, $catch());
+	} catch ($IOException& e) {
 		$throw(e);
-	} catch ($AttributeNotFoundException&) {
-		$var($AttributeNotFoundException, e, $catch());
+	} catch ($AttributeNotFoundException& e) {
 		$throw(e);
-	} catch ($InstanceNotFoundException&) {
-		$var($InstanceNotFoundException, e, $catch());
+	} catch ($InstanceNotFoundException& e) {
 		$throw(e);
-	} catch ($MBeanException&) {
-		$var($MBeanException, e, $catch());
+	} catch ($MBeanException& e) {
 		$throw(e);
-	} catch ($ReflectionException&) {
-		$var($ReflectionException, e, $catch());
+	} catch ($ReflectionException& e) {
 		$throw(e);
-	} catch ($Exception&) {
-		$var($Exception, e, $catch());
+	} catch ($Exception& e) {
 		$throwNew($UnexpectedException, "undeclared checked exception"_s, e);
 	}
 	$shouldNotReachHere();
@@ -507,38 +441,29 @@ $AttributeList* RMIConnectionImpl_Stub::getAttributes($ObjectName* $param_Object
 			$of($param_Subject_3)
 		}), 0x5739D96A8B235C47));
 		return ($cast($AttributeList, $result));
-	} catch ($RuntimeException&) {
-		$var($RuntimeException, e, $catch());
+	} catch ($RuntimeException& e) {
 		$throw(e);
-	} catch ($IOException&) {
-		$var($IOException, e, $catch());
+	} catch ($IOException& e) {
 		$throw(e);
-	} catch ($InstanceNotFoundException&) {
-		$var($InstanceNotFoundException, e, $catch());
+	} catch ($InstanceNotFoundException& e) {
 		$throw(e);
-	} catch ($ReflectionException&) {
-		$var($ReflectionException, e, $catch());
+	} catch ($ReflectionException& e) {
 		$throw(e);
-	} catch ($Exception&) {
-		$var($Exception, e, $catch());
+	} catch ($Exception& e) {
 		$throwNew($UnexpectedException, "undeclared checked exception"_s, e);
 	}
 	$shouldNotReachHere();
 }
 
 $String* RMIConnectionImpl_Stub::getConnectionId() {
-	$useLocalCurrentObjectStackCache();
 	try {
 		$var($Object, $result, $nc(this->ref)->invoke(static_cast<$Remote*>(static_cast<$RemoteObject*>(static_cast<$RemoteStub*>(this))), RMIConnectionImpl_Stub::$method_getConnectionId_10, nullptr, 0xFF0EBEC77DC65363));
 		return ($cast($String, $result));
-	} catch ($RuntimeException&) {
-		$var($RuntimeException, e, $catch());
+	} catch ($RuntimeException& e) {
 		$throw(e);
-	} catch ($IOException&) {
-		$var($IOException, e, $catch());
+	} catch ($IOException& e) {
 		$throw(e);
-	} catch ($Exception&) {
-		$var($Exception, e, $catch());
+	} catch ($Exception& e) {
 		$throwNew($UnexpectedException, "undeclared checked exception"_s, e);
 	}
 	$shouldNotReachHere();
@@ -549,14 +474,11 @@ $String* RMIConnectionImpl_Stub::getDefaultDomain($Subject* $param_Subject_1) {
 	try {
 		$var($Object, $result, $nc(this->ref)->invoke(static_cast<$Remote*>(static_cast<$RemoteObject*>(static_cast<$RemoteStub*>(this))), RMIConnectionImpl_Stub::$method_getDefaultDomain_11, $$new($ObjectArray, {$of($param_Subject_1)}), 0x53EDA2D82E1BDFA8));
 		return ($cast($String, $result));
-	} catch ($RuntimeException&) {
-		$var($RuntimeException, e, $catch());
+	} catch ($RuntimeException& e) {
 		$throw(e);
-	} catch ($IOException&) {
-		$var($IOException, e, $catch());
+	} catch ($IOException& e) {
 		$throw(e);
-	} catch ($Exception&) {
-		$var($Exception, e, $catch());
+	} catch ($Exception& e) {
 		$throwNew($UnexpectedException, "undeclared checked exception"_s, e);
 	}
 	$shouldNotReachHere();
@@ -567,14 +489,11 @@ $StringArray* RMIConnectionImpl_Stub::getDomains($Subject* $param_Subject_1) {
 	try {
 		$var($Object, $result, $nc(this->ref)->invoke(static_cast<$Remote*>(static_cast<$RemoteObject*>(static_cast<$RemoteStub*>(this))), RMIConnectionImpl_Stub::$method_getDomains_12, $$new($ObjectArray, {$of($param_Subject_1)}), 0xA38AB48D41D0F631));
 		return ($cast($StringArray, $result));
-	} catch ($RuntimeException&) {
-		$var($RuntimeException, e, $catch());
+	} catch ($RuntimeException& e) {
 		$throw(e);
-	} catch ($IOException&) {
-		$var($IOException, e, $catch());
+	} catch ($IOException& e) {
 		$throw(e);
-	} catch ($Exception&) {
-		$var($Exception, e, $catch());
+	} catch ($Exception& e) {
 		$throwNew($UnexpectedException, "undeclared checked exception"_s, e);
 	}
 	$shouldNotReachHere();
@@ -585,14 +504,11 @@ $Integer* RMIConnectionImpl_Stub::getMBeanCount($Subject* $param_Subject_1) {
 	try {
 		$var($Object, $result, $nc(this->ref)->invoke(static_cast<$Remote*>(static_cast<$RemoteObject*>(static_cast<$RemoteStub*>(this))), RMIConnectionImpl_Stub::$method_getMBeanCount_13, $$new($ObjectArray, {$of($param_Subject_1)}), 0xE3A812879DC32EA5));
 		return ($cast($Integer, $result));
-	} catch ($RuntimeException&) {
-		$var($RuntimeException, e, $catch());
+	} catch ($RuntimeException& e) {
 		$throw(e);
-	} catch ($IOException&) {
-		$var($IOException, e, $catch());
+	} catch ($IOException& e) {
 		$throw(e);
-	} catch ($Exception&) {
-		$var($Exception, e, $catch());
+	} catch ($Exception& e) {
 		$throwNew($UnexpectedException, "undeclared checked exception"_s, e);
 	}
 	$shouldNotReachHere();
@@ -606,23 +522,17 @@ $MBeanInfo* RMIConnectionImpl_Stub::getMBeanInfo($ObjectName* $param_ObjectName_
 			$of($param_Subject_2)
 		}), 0x993CD0F9B9817AF6));
 		return ($cast($MBeanInfo, $result));
-	} catch ($RuntimeException&) {
-		$var($RuntimeException, e, $catch());
+	} catch ($RuntimeException& e) {
 		$throw(e);
-	} catch ($IOException&) {
-		$var($IOException, e, $catch());
+	} catch ($IOException& e) {
 		$throw(e);
-	} catch ($InstanceNotFoundException&) {
-		$var($InstanceNotFoundException, e, $catch());
+	} catch ($InstanceNotFoundException& e) {
 		$throw(e);
-	} catch ($IntrospectionException&) {
-		$var($IntrospectionException, e, $catch());
+	} catch ($IntrospectionException& e) {
 		$throw(e);
-	} catch ($ReflectionException&) {
-		$var($ReflectionException, e, $catch());
+	} catch ($ReflectionException& e) {
 		$throw(e);
-	} catch ($Exception&) {
-		$var($Exception, e, $catch());
+	} catch ($Exception& e) {
 		$throwNew($UnexpectedException, "undeclared checked exception"_s, e);
 	}
 	$shouldNotReachHere();
@@ -636,17 +546,13 @@ $ObjectInstance* RMIConnectionImpl_Stub::getObjectInstance($ObjectName* $param_O
 			$of($param_Subject_2)
 		}), 0x6073B3361F37BDC2));
 		return ($cast($ObjectInstance, $result));
-	} catch ($RuntimeException&) {
-		$var($RuntimeException, e, $catch());
+	} catch ($RuntimeException& e) {
 		$throw(e);
-	} catch ($IOException&) {
-		$var($IOException, e, $catch());
+	} catch ($IOException& e) {
 		$throw(e);
-	} catch ($InstanceNotFoundException&) {
-		$var($InstanceNotFoundException, e, $catch());
+	} catch ($InstanceNotFoundException& e) {
 		$throw(e);
-	} catch ($Exception&) {
-		$var($Exception, e, $catch());
+	} catch ($Exception& e) {
 		$throwNew($UnexpectedException, "undeclared checked exception"_s, e);
 	}
 	$shouldNotReachHere();
@@ -663,23 +569,17 @@ $Object* RMIConnectionImpl_Stub::invoke($ObjectName* $param_ObjectName_1, $Strin
 			$of($param_Subject_5)
 		}), 0x13E7D69417E5DA20));
 		return $of($result);
-	} catch ($RuntimeException&) {
-		$var($RuntimeException, e, $catch());
+	} catch ($RuntimeException& e) {
 		$throw(e);
-	} catch ($IOException&) {
-		$var($IOException, e, $catch());
+	} catch ($IOException& e) {
 		$throw(e);
-	} catch ($InstanceNotFoundException&) {
-		$var($InstanceNotFoundException, e, $catch());
+	} catch ($InstanceNotFoundException& e) {
 		$throw(e);
-	} catch ($MBeanException&) {
-		$var($MBeanException, e, $catch());
+	} catch ($MBeanException& e) {
 		$throw(e);
-	} catch ($ReflectionException&) {
-		$var($ReflectionException, e, $catch());
+	} catch ($ReflectionException& e) {
 		$throw(e);
-	} catch ($Exception&) {
-		$var($Exception, e, $catch());
+	} catch ($Exception& e) {
 		$throwNew($UnexpectedException, "undeclared checked exception"_s, e);
 	}
 	$shouldNotReachHere();
@@ -694,17 +594,13 @@ bool RMIConnectionImpl_Stub::isInstanceOf($ObjectName* $param_ObjectName_1, $Str
 			$of($param_Subject_3)
 		}), 0xE2327CC9422DBCF2));
 		return $nc(($cast($Boolean, $result)))->booleanValue();
-	} catch ($RuntimeException&) {
-		$var($RuntimeException, e, $catch());
+	} catch ($RuntimeException& e) {
 		$throw(e);
-	} catch ($IOException&) {
-		$var($IOException, e, $catch());
+	} catch ($IOException& e) {
 		$throw(e);
-	} catch ($InstanceNotFoundException&) {
-		$var($InstanceNotFoundException, e, $catch());
+	} catch ($InstanceNotFoundException& e) {
 		$throw(e);
-	} catch ($Exception&) {
-		$var($Exception, e, $catch());
+	} catch ($Exception& e) {
 		$throwNew($UnexpectedException, "undeclared checked exception"_s, e);
 	}
 	$shouldNotReachHere();
@@ -718,14 +614,11 @@ bool RMIConnectionImpl_Stub::isRegistered($ObjectName* $param_ObjectName_1, $Sub
 			$of($param_Subject_2)
 		}), 0x738AC4E1CCABA014));
 		return $nc(($cast($Boolean, $result)))->booleanValue();
-	} catch ($RuntimeException&) {
-		$var($RuntimeException, e, $catch());
+	} catch ($RuntimeException& e) {
 		$throw(e);
-	} catch ($IOException&) {
-		$var($IOException, e, $catch());
+	} catch ($IOException& e) {
 		$throw(e);
-	} catch ($Exception&) {
-		$var($Exception, e, $catch());
+	} catch ($Exception& e) {
 		$throwNew($UnexpectedException, "undeclared checked exception"_s, e);
 	}
 	$shouldNotReachHere();
@@ -740,14 +633,11 @@ $Set* RMIConnectionImpl_Stub::queryMBeans($ObjectName* $param_ObjectName_1, $Mar
 			$of($param_Subject_3)
 		}), 0x28774A543CA14DD8));
 		return ($cast($Set, $result));
-	} catch ($RuntimeException&) {
-		$var($RuntimeException, e, $catch());
+	} catch ($RuntimeException& e) {
 		$throw(e);
-	} catch ($IOException&) {
-		$var($IOException, e, $catch());
+	} catch ($IOException& e) {
 		$throw(e);
-	} catch ($Exception&) {
-		$var($Exception, e, $catch());
+	} catch ($Exception& e) {
 		$throwNew($UnexpectedException, "undeclared checked exception"_s, e);
 	}
 	$shouldNotReachHere();
@@ -762,21 +652,17 @@ $Set* RMIConnectionImpl_Stub::queryNames($ObjectName* $param_ObjectName_1, $Mars
 			$of($param_Subject_3)
 		}), 0x7F0473ACB73677DA));
 		return ($cast($Set, $result));
-	} catch ($RuntimeException&) {
-		$var($RuntimeException, e, $catch());
+	} catch ($RuntimeException& e) {
 		$throw(e);
-	} catch ($IOException&) {
-		$var($IOException, e, $catch());
+	} catch ($IOException& e) {
 		$throw(e);
-	} catch ($Exception&) {
-		$var($Exception, e, $catch());
+	} catch ($Exception& e) {
 		$throwNew($UnexpectedException, "undeclared checked exception"_s, e);
 	}
 	$shouldNotReachHere();
 }
 
 void RMIConnectionImpl_Stub::removeNotificationListener($ObjectName* $param_ObjectName_1, $ObjectName* $param_ObjectName_2, $MarshalledObject* $param_MarshalledObject_3, $MarshalledObject* $param_MarshalledObject_4, $Subject* $param_Subject_5) {
-	$useLocalCurrentObjectStackCache();
 	try {
 		$nc(this->ref)->invoke(static_cast<$Remote*>(static_cast<$RemoteObject*>(static_cast<$RemoteStub*>(this))), RMIConnectionImpl_Stub::$method_removeNotificationListener_21, $$new($ObjectArray, {
 			$of($param_ObjectName_1),
@@ -785,107 +671,81 @@ void RMIConnectionImpl_Stub::removeNotificationListener($ObjectName* $param_Obje
 			$of($param_MarshalledObject_4),
 			$of($param_Subject_5)
 		}), 0x23C70088FDB91189);
-	} catch ($RuntimeException&) {
-		$var($RuntimeException, e, $catch());
+	} catch ($RuntimeException& e) {
 		$throw(e);
-	} catch ($IOException&) {
-		$var($IOException, e, $catch());
+	} catch ($IOException& e) {
 		$throw(e);
-	} catch ($InstanceNotFoundException&) {
-		$var($InstanceNotFoundException, e, $catch());
+	} catch ($InstanceNotFoundException& e) {
 		$throw(e);
-	} catch ($ListenerNotFoundException&) {
-		$var($ListenerNotFoundException, e, $catch());
+	} catch ($ListenerNotFoundException& e) {
 		$throw(e);
-	} catch ($Exception&) {
-		$var($Exception, e, $catch());
+	} catch ($Exception& e) {
 		$throwNew($UnexpectedException, "undeclared checked exception"_s, e);
 	}
 }
 
 void RMIConnectionImpl_Stub::removeNotificationListener($ObjectName* $param_ObjectName_1, $ObjectName* $param_ObjectName_2, $Subject* $param_Subject_3) {
-	$useLocalCurrentObjectStackCache();
 	try {
 		$nc(this->ref)->invoke(static_cast<$Remote*>(static_cast<$RemoteObject*>(static_cast<$RemoteStub*>(this))), RMIConnectionImpl_Stub::$method_removeNotificationListener_22, $$new($ObjectArray, {
 			$of($param_ObjectName_1),
 			$of($param_ObjectName_2),
 			$of($param_Subject_3)
 		}), 0x5BA8AEE8FA8E0529);
-	} catch ($RuntimeException&) {
-		$var($RuntimeException, e, $catch());
+	} catch ($RuntimeException& e) {
 		$throw(e);
-	} catch ($IOException&) {
-		$var($IOException, e, $catch());
+	} catch ($IOException& e) {
 		$throw(e);
-	} catch ($InstanceNotFoundException&) {
-		$var($InstanceNotFoundException, e, $catch());
+	} catch ($InstanceNotFoundException& e) {
 		$throw(e);
-	} catch ($ListenerNotFoundException&) {
-		$var($ListenerNotFoundException, e, $catch());
+	} catch ($ListenerNotFoundException& e) {
 		$throw(e);
-	} catch ($Exception&) {
-		$var($Exception, e, $catch());
+	} catch ($Exception& e) {
 		$throwNew($UnexpectedException, "undeclared checked exception"_s, e);
 	}
 }
 
 void RMIConnectionImpl_Stub::removeNotificationListeners($ObjectName* $param_ObjectName_1, $IntegerArray* $param_arrayOf_Integer_2, $Subject* $param_Subject_3) {
-	$useLocalCurrentObjectStackCache();
 	try {
 		$nc(this->ref)->invoke(static_cast<$Remote*>(static_cast<$RemoteObject*>(static_cast<$RemoteStub*>(this))), RMIConnectionImpl_Stub::$method_removeNotificationListeners_23, $$new($ObjectArray, {
 			$of($param_ObjectName_1),
 			$of($param_arrayOf_Integer_2),
 			$of($param_Subject_3)
 		}), 0x23604B280B8BBE96);
-	} catch ($RuntimeException&) {
-		$var($RuntimeException, e, $catch());
+	} catch ($RuntimeException& e) {
 		$throw(e);
-	} catch ($IOException&) {
-		$var($IOException, e, $catch());
+	} catch ($IOException& e) {
 		$throw(e);
-	} catch ($InstanceNotFoundException&) {
-		$var($InstanceNotFoundException, e, $catch());
+	} catch ($InstanceNotFoundException& e) {
 		$throw(e);
-	} catch ($ListenerNotFoundException&) {
-		$var($ListenerNotFoundException, e, $catch());
+	} catch ($ListenerNotFoundException& e) {
 		$throw(e);
-	} catch ($Exception&) {
-		$var($Exception, e, $catch());
+	} catch ($Exception& e) {
 		$throwNew($UnexpectedException, "undeclared checked exception"_s, e);
 	}
 }
 
 void RMIConnectionImpl_Stub::setAttribute($ObjectName* $param_ObjectName_1, $MarshalledObject* $param_MarshalledObject_2, $Subject* $param_Subject_3) {
-	$useLocalCurrentObjectStackCache();
 	try {
 		$nc(this->ref)->invoke(static_cast<$Remote*>(static_cast<$RemoteObject*>(static_cast<$RemoteStub*>(this))), RMIConnectionImpl_Stub::$method_setAttribute_24, $$new($ObjectArray, {
 			$of($param_ObjectName_1),
 			$of($param_MarshalledObject_2),
 			$of($param_Subject_3)
 		}), 0x5D845744730AFE0C);
-	} catch ($RuntimeException&) {
-		$var($RuntimeException, e, $catch());
+	} catch ($RuntimeException& e) {
 		$throw(e);
-	} catch ($IOException&) {
-		$var($IOException, e, $catch());
+	} catch ($IOException& e) {
 		$throw(e);
-	} catch ($AttributeNotFoundException&) {
-		$var($AttributeNotFoundException, e, $catch());
+	} catch ($AttributeNotFoundException& e) {
 		$throw(e);
-	} catch ($InstanceNotFoundException&) {
-		$var($InstanceNotFoundException, e, $catch());
+	} catch ($InstanceNotFoundException& e) {
 		$throw(e);
-	} catch ($InvalidAttributeValueException&) {
-		$var($InvalidAttributeValueException, e, $catch());
+	} catch ($InvalidAttributeValueException& e) {
 		$throw(e);
-	} catch ($MBeanException&) {
-		$var($MBeanException, e, $catch());
+	} catch ($MBeanException& e) {
 		$throw(e);
-	} catch ($ReflectionException&) {
-		$var($ReflectionException, e, $catch());
+	} catch ($ReflectionException& e) {
 		$throw(e);
-	} catch ($Exception&) {
-		$var($Exception, e, $catch());
+	} catch ($Exception& e) {
 		$throwNew($UnexpectedException, "undeclared checked exception"_s, e);
 	}
 }
@@ -899,46 +759,35 @@ $AttributeList* RMIConnectionImpl_Stub::setAttributes($ObjectName* $param_Object
 			$of($param_Subject_3)
 		}), 0xFCCD348C60EF0EE4));
 		return ($cast($AttributeList, $result));
-	} catch ($RuntimeException&) {
-		$var($RuntimeException, e, $catch());
+	} catch ($RuntimeException& e) {
 		$throw(e);
-	} catch ($IOException&) {
-		$var($IOException, e, $catch());
+	} catch ($IOException& e) {
 		$throw(e);
-	} catch ($InstanceNotFoundException&) {
-		$var($InstanceNotFoundException, e, $catch());
+	} catch ($InstanceNotFoundException& e) {
 		$throw(e);
-	} catch ($ReflectionException&) {
-		$var($ReflectionException, e, $catch());
+	} catch ($ReflectionException& e) {
 		$throw(e);
-	} catch ($Exception&) {
-		$var($Exception, e, $catch());
+	} catch ($Exception& e) {
 		$throwNew($UnexpectedException, "undeclared checked exception"_s, e);
 	}
 	$shouldNotReachHere();
 }
 
 void RMIConnectionImpl_Stub::unregisterMBean($ObjectName* $param_ObjectName_1, $Subject* $param_Subject_2) {
-	$useLocalCurrentObjectStackCache();
 	try {
 		$nc(this->ref)->invoke(static_cast<$Remote*>(static_cast<$RemoteObject*>(static_cast<$RemoteStub*>(this))), RMIConnectionImpl_Stub::$method_unregisterMBean_26, $$new($ObjectArray, {
 			$of($param_ObjectName_1),
 			$of($param_Subject_2)
 		}), 0xFDC958E2C12414D4);
-	} catch ($RuntimeException&) {
-		$var($RuntimeException, e, $catch());
+	} catch ($RuntimeException& e) {
 		$throw(e);
-	} catch ($IOException&) {
-		$var($IOException, e, $catch());
+	} catch ($IOException& e) {
 		$throw(e);
-	} catch ($InstanceNotFoundException&) {
-		$var($InstanceNotFoundException, e, $catch());
+	} catch ($InstanceNotFoundException& e) {
 		$throw(e);
-	} catch ($MBeanRegistrationException&) {
-		$var($MBeanRegistrationException, e, $catch());
+	} catch ($MBeanRegistrationException& e) {
 		$throw(e);
-	} catch ($Exception&) {
-		$var($Exception, e, $catch());
+	} catch ($Exception& e) {
 		$throwNew($UnexpectedException, "undeclared checked exception"_s, e);
 	}
 }
@@ -949,9 +798,9 @@ void clinit$RMIConnectionImpl_Stub($Class* class$) {
 	{
 		try {
 			$load($RMIConnection);
-				$load($ObjectName);
-				$load($MarshalledObject);
-				$load($Subject);
+			$load($ObjectName);
+			$load($MarshalledObject);
+			$load($Subject);
 			$assignStatic(RMIConnectionImpl_Stub::$method_addNotificationListener_0, $RMIConnection::class$->getMethod("addNotificationListener"_s, $$new($ClassArray, {
 				$ObjectName::class$,
 				$ObjectName::class$,
@@ -959,9 +808,9 @@ void clinit$RMIConnectionImpl_Stub($Class* class$) {
 				$MarshalledObject::class$,
 				$Subject::class$
 			})));
-				$load($ObjectNameArray);
-				$load($MarshalledObjectArray);
-				$load($SubjectArray);
+			$load($ObjectNameArray);
+			$load($MarshalledObjectArray);
+			$load($SubjectArray);
 			$assignStatic(RMIConnectionImpl_Stub::$method_addNotificationListeners_1, $RMIConnection::class$->getMethod("addNotificationListeners"_s, $$new($ClassArray, {
 				$getClass($ObjectNameArray),
 				$getClass($MarshalledObjectArray),
@@ -969,8 +818,7 @@ void clinit$RMIConnectionImpl_Stub($Class* class$) {
 			})));
 			$load($AutoCloseable);
 			$assignStatic(RMIConnectionImpl_Stub::$method_close_2, $AutoCloseable::class$->getMethod("close"_s, $$new($ClassArray, 0)));
-				$load($String);
-				$load($StringArray);
+			$load($StringArray);
 			$assignStatic(RMIConnectionImpl_Stub::$method_createMBean_3, $RMIConnection::class$->getMethod("createMBean"_s, $$new($ClassArray, {
 				$String::class$,
 				$ObjectName::class$,
@@ -997,8 +845,8 @@ void clinit$RMIConnectionImpl_Stub($Class* class$) {
 				$ObjectName::class$,
 				$Subject::class$
 			})));
-				$init($Long);
-				$init($Integer);
+			$init($Long);
+			$init($Integer);
 			$assignStatic(RMIConnectionImpl_Stub::$method_fetchNotifications_7, $RMIConnection::class$->getMethod("fetchNotifications"_s, $$new($ClassArray, {
 				$Long::TYPE,
 				$Integer::TYPE,
@@ -1064,7 +912,7 @@ void clinit$RMIConnectionImpl_Stub($Class* class$) {
 				$ObjectName::class$,
 				$Subject::class$
 			})));
-				$load($IntegerArray);
+			$load($IntegerArray);
 			$assignStatic(RMIConnectionImpl_Stub::$method_removeNotificationListeners_23, $RMIConnection::class$->getMethod("removeNotificationListeners"_s, $$new($ClassArray, {
 				$ObjectName::class$,
 				$getClass($IntegerArray),
@@ -1084,8 +932,7 @@ void clinit$RMIConnectionImpl_Stub($Class* class$) {
 				$ObjectName::class$,
 				$Subject::class$
 			})));
-		} catch ($NoSuchMethodException&) {
-			$var($NoSuchMethodException, e, $catch());
+		} catch ($NoSuchMethodException& e) {
 			$throwNew($NoSuchMethodError, "stub class initialization failed"_s);
 		}
 	}

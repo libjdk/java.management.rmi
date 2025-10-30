@@ -5,21 +5,6 @@
 #include <com/sun/jmx/remote/internal/ClientNotifForwarder.h>
 #include <com/sun/jmx/remote/util/ClassLogger.h>
 #include <java/io/IOException.h>
-#include <java/lang/Array.h>
-#include <java/lang/Class.h>
-#include <java/lang/ClassInfo.h>
-#include <java/lang/Exception.h>
-#include <java/lang/FieldInfo.h>
-#include <java/lang/InnerClassInfo.h>
-#include <java/lang/Integer.h>
-#include <java/lang/MethodInfo.h>
-#include <java/lang/NullPointerException.h>
-#include <java/lang/RuntimeException.h>
-#include <java/lang/String.h>
-#include <java/lang/System.h>
-#include <java/lang/Throwable.h>
-#include <java/lang/reflect/Constructor.h>
-#include <java/lang/reflect/Method.h>
 #include <java/rmi/MarshalledObject.h>
 #include <java/rmi/NoSuchObjectException.h>
 #include <java/rmi/ServerException.h>
@@ -141,8 +126,7 @@ void RMIConnector$RMIClientCommunicatorAdmin::gotIOException($IOException* ioe) 
 	}
 	try {
 		$nc(this->this$0->connection)->getDefaultDomain(nullptr);
-	} catch ($IOException&) {
-		$var($IOException, ioexc, $catch());
+	} catch ($IOException& ioexc) {
 		bool toClose = false;
 		$synchronized(this) {
 			if (!this->this$0->terminated) {
@@ -158,8 +142,7 @@ void RMIConnector$RMIClientCommunicatorAdmin::gotIOException($IOException* ioe) 
 			this->this$0->sendNotification(failedNotif);
 			try {
 				this->this$0->close(true);
-			} catch ($Exception&) {
-				$catch();
+			} catch ($Exception& e) {
 			}
 		}
 	}
@@ -200,16 +183,14 @@ void RMIConnector$RMIClientCommunicatorAdmin::reconnectNotificationListeners($Cl
 		}
 		$nc(this->this$0->rmiNotifClient)->postReconnection(clis);
 		return;
-	} catch ($InstanceNotFoundException&) {
-		$catch();
+	} catch ($InstanceNotFoundException& infe) {
 	}
 	int32_t j = 0;
 	for (i = 0; i < len; ++i) {
 		try {
 			$var($Integer, id, this->this$0->addListenerWithSubject(names->get(i), $$new($MarshalledObject, filters->get(i)), subjects->get(i), false));
 			clis->set(j++, $$new($ClientListenerInfo, id, names->get(i), listeners->get(i), filters->get(i), handbacks->get(i), subjects->get(i)));
-		} catch ($InstanceNotFoundException&) {
-			$var($InstanceNotFoundException, infe, $catch());
+		} catch ($InstanceNotFoundException& infe) {
 			$init($RMIConnector);
 			$nc($RMIConnector::logger)->warning("reconnectNotificationListeners"_s, $$str({"Can\'t reconnect listener for "_s, names->get(i)}));
 		}
@@ -235,8 +216,7 @@ void RMIConnector$RMIClientCommunicatorAdmin::doStart() {
 	$var($RMIServer, stub, nullptr);
 	try {
 		$assign(stub, (this->this$0->rmiServer != nullptr) ? this->this$0->rmiServer : this->this$0->findRMIServer(this->this$0->jmxServiceURL, this->this$0->env));
-	} catch ($NamingException&) {
-		$var($NamingException, ne, $catch());
+	} catch ($NamingException& ne) {
 		$throwNew($IOException, $$str({"Failed to get a RMI stub: "_s, ne}));
 	}
 	$var($Object, credentials, $nc(this->this$0->env)->get("jmx.remote.credentials"_s));
@@ -252,11 +232,9 @@ void RMIConnector$RMIClientCommunicatorAdmin::doStart() {
 }
 
 void RMIConnector$RMIClientCommunicatorAdmin::doStop() {
-	$useLocalCurrentObjectStackCache();
 	try {
 		this->this$0->close();
-	} catch ($IOException&) {
-		$var($IOException, ioe, $catch());
+	} catch ($IOException& ioe) {
 		$init($RMIConnector);
 		$nc($RMIConnector::logger)->warning("RMIClientCommunicatorAdmin-doStop"_s, $$str({"Failed to call the method close():"_s, ioe}));
 		$nc($RMIConnector::logger)->debug("RMIClientCommunicatorAdmin-doStop"_s, static_cast<$Throwable*>(ioe));

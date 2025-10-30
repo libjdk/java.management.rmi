@@ -8,22 +8,8 @@
 #include <java/io/IOException.h>
 #include <java/io/ObjectOutputStream.h>
 #include <java/io/OutputStream.h>
-#include <java/lang/Array.h>
-#include <java/lang/Class.h>
-#include <java/lang/ClassInfo.h>
 #include <java/lang/ClassLoader.h>
-#include <java/lang/Exception.h>
-#include <java/lang/FieldInfo.h>
-#include <java/lang/IllegalArgumentException.h>
 #include <java/lang/IllegalStateException.h>
-#include <java/lang/MethodInfo.h>
-#include <java/lang/NullPointerException.h>
-#include <java/lang/RuntimeException.h>
-#include <java/lang/String.h>
-#include <java/lang/StringBuilder.h>
-#include <java/lang/Throwable.h>
-#include <java/lang/reflect/Constructor.h>
-#include <java/lang/reflect/Method.h>
 #include <java/net/MalformedURLException.h>
 #include <java/rmi/Remote.h>
 #include <java/rmi/server/RMIClientSocketFactory.h>
@@ -170,17 +156,11 @@ $Object* allocate$RMIConnectorServer($Class* clazz) {
 	return $of($alloc(RMIConnectorServer));
 }
 
-
 $String* RMIConnectorServer::JNDI_REBIND_ATTRIBUTE = nullptr;
-
 $String* RMIConnectorServer::RMI_CLIENT_SOCKET_FACTORY_ATTRIBUTE = nullptr;
-
 $String* RMIConnectorServer::RMI_SERVER_SOCKET_FACTORY_ATTRIBUTE = nullptr;
-
 $String* RMIConnectorServer::CREDENTIALS_FILTER_PATTERN = nullptr;
-
 $String* RMIConnectorServer::SERIAL_FILTER_PATTERN = nullptr;
-
 $chars* RMIConnectorServer::intToAlpha = nullptr;
 $ClassLogger* RMIConnectorServer::logger = nullptr;
 $Set* RMIConnectorServer::openedServers = nullptr;
@@ -264,8 +244,7 @@ void RMIConnectorServer::start() {
 				$var($MBeanServerForwarder, mbsf, nullptr);
 				try {
 					$assign(mbsf, $new($MBeanServerFileAccessController, accessFile));
-				} catch ($IOException&) {
-					$var($IOException, e, $catch());
+				} catch ($IOException& e) {
 					$throw($cast($IllegalArgumentException, $($EnvHelp::initCause($$new($IllegalArgumentException, $(e->getMessage())), e))));
 				}
 				setMBeanServerForwarder(mbsf);
@@ -276,8 +255,7 @@ void RMIConnectorServer::start() {
 				$nc(RMIConnectorServer::logger)->trace("start"_s, "setting default class loader"_s);
 			}
 			$set(this, defaultClassLoader, $EnvHelp::resolveServerClassLoader(this->attributes, $(getMBeanServer())));
-		} catch ($InstanceNotFoundException&) {
-			$var($InstanceNotFoundException, infc, $catch());
+		} catch ($InstanceNotFoundException& infc) {
 			$var($IllegalArgumentException, x, $new($IllegalArgumentException, $$str({"ClassLoader not found: "_s, infc})));
 			$throw($cast($IllegalArgumentException, $($EnvHelp::initCause(x, infc))));
 		}
@@ -316,8 +294,7 @@ void RMIConnectorServer::start() {
 					$var($Hashtable, usemap, $EnvHelp::mapToHashtable(this->attributes));
 					bind(jndiUrl, usemap, objref, rebind);
 					$set(this, boundJndiUrl, jndiUrl);
-				} catch ($NamingException&) {
-					$var($NamingException, e, $catch());
+				} catch ($NamingException& e) {
 					$throw($(newIOException($$str({"Cannot bind to URL ["_s, jndiUrl, "]: "_s, e}), e)));
 				}
 			} else {
@@ -329,12 +306,10 @@ void RMIConnectorServer::start() {
 					$nc(RMIConnectorServer::logger)->trace("start"_s, $$str({"Encoded URL: "_s, this->address}));
 				}
 			}
-		} catch ($Exception&) {
-			$var($Exception, e, $catch());
+		} catch ($Exception& e) {
 			try {
 				rmiServer->close();
-			} catch ($Exception&) {
-				$catch();
+			} catch ($Exception& x) {
 			}
 			if ($instanceOf($RuntimeException, e)) {
 				$throw($cast($RuntimeException, e));
@@ -385,8 +360,7 @@ void RMIConnectorServer::stop() {
 				$nc(RMIConnectorServer::logger)->trace("stop"_s, "closing RMI server."_s);
 			}
 			$nc(this->rmiServerImpl)->close();
-		} catch ($IOException&) {
-			$var($IOException, e, $catch());
+		} catch ($IOException& e) {
 			if (tracing) {
 				$nc(RMIConnectorServer::logger)->trace("stop"_s, $$str({"failed to close RMI server: "_s, e}));
 			}
@@ -405,8 +379,7 @@ void RMIConnectorServer::stop() {
 			$var($InitialContext, ctx, $new($InitialContext, usemap));
 			ctx->unbind(this->boundJndiUrl);
 			ctx->close();
-		} catch ($NamingException&) {
-			$var($NamingException, e, $catch());
+		} catch ($NamingException& e) {
 			if (tracing) {
 				$nc(RMIConnectorServer::logger)->trace("stop"_s, $$str({"failed to unbind RMI server: "_s, e}));
 			}

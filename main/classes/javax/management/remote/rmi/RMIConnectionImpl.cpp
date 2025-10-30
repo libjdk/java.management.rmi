@@ -10,34 +10,18 @@
 #include <com/sun/jmx/remote/util/EnvHelp.h>
 #include <java/io/IOException.h>
 #include <java/io/Serializable.h>
-#include <java/lang/Array.h>
-#include <java/lang/Boolean.h>
-#include <java/lang/Class.h>
 #include <java/lang/ClassCastException.h>
-#include <java/lang/ClassInfo.h>
 #include <java/lang/ClassLoader.h>
 #include <java/lang/ClassNotFoundException.h>
 #include <java/lang/Error.h>
-#include <java/lang/Exception.h>
-#include <java/lang/FieldInfo.h>
-#include <java/lang/IllegalArgumentException.h>
-#include <java/lang/InnerClassInfo.h>
-#include <java/lang/Integer.h>
-#include <java/lang/MethodInfo.h>
-#include <java/lang/NullPointerException.h>
 #include <java/lang/ReflectiveOperationException.h>
-#include <java/lang/RuntimeException.h>
 #include <java/lang/RuntimePermission.h>
 #include <java/lang/SecurityException.h>
-#include <java/lang/String.h>
-#include <java/lang/Throwable.h>
 #include <java/lang/invoke/CallSite.h>
 #include <java/lang/invoke/LambdaMetafactory.h>
 #include <java/lang/invoke/MethodHandle.h>
 #include <java/lang/invoke/MethodHandles$Lookup.h>
 #include <java/lang/invoke/MethodType.h>
-#include <java/lang/reflect/Constructor.h>
-#include <java/lang/reflect/Method.h>
 #include <java/rmi/MarshalledObject.h>
 #include <java/rmi/UnmarshalException.h>
 #include <java/security/AccessControlContext.h>
@@ -526,8 +510,7 @@ void RMIConnectionImpl::unreferenced() {
 	try {
 		close();
 		$nc(RMIConnectionImpl::logger)->debug("unreferenced"_s, "done"_s);
-	} catch ($IOException&) {
-		$var($IOException, e, $catch());
+	} catch ($IOException& e) {
 		$nc(RMIConnectionImpl::logger)->fine("unreferenced"_s, static_cast<$Throwable*>(e));
 	}
 }
@@ -543,8 +526,7 @@ $ObjectInstance* RMIConnectionImpl::createMBean($String* className, $ObjectName*
 			$nc(RMIConnectionImpl::logger)->debug("createMBean(String,ObjectName)"_s, $$str({"connectionId="_s, this->connectionId, ", className="_s, className, ", name="_s, name}));
 		}
 		return $cast($ObjectInstance, doPrivilegedOperation(RMIConnectionImpl::CREATE_MBEAN, params, delegationSubject));
-	} catch ($PrivilegedActionException&) {
-		$var($PrivilegedActionException, pe, $catch());
+	} catch ($PrivilegedActionException& pe) {
 		$var($Exception, e, extractException(pe));
 		if ($instanceOf($ReflectionException, e)) {
 			$throw($cast($ReflectionException, e));
@@ -581,8 +563,7 @@ $ObjectInstance* RMIConnectionImpl::createMBean($String* className, $ObjectName*
 			$nc(RMIConnectionImpl::logger)->debug("createMBean(String,ObjectName,ObjectName)"_s, $$str({"connectionId="_s, this->connectionId, ", className="_s, className, ", name="_s, name, ", loaderName="_s, loaderName}));
 		}
 		return $cast($ObjectInstance, doPrivilegedOperation(RMIConnectionImpl::CREATE_MBEAN_LOADER, params, delegationSubject));
-	} catch ($PrivilegedActionException&) {
-		$var($PrivilegedActionException, pe, $catch());
+	} catch ($PrivilegedActionException& pe) {
 		$var($Exception, e, extractException(pe));
 		if ($instanceOf($ReflectionException, e)) {
 			$throw($cast($ReflectionException, e));
@@ -631,8 +612,7 @@ $ObjectInstance* RMIConnectionImpl::createMBean($String* className, $ObjectName*
 			$nc(RMIConnectionImpl::logger)->debug("createMBean(String,ObjectName,Object[],String[])"_s, $$concat(var$0, $(strings(signature))));
 		}
 		return $cast($ObjectInstance, doPrivilegedOperation(RMIConnectionImpl::CREATE_MBEAN_PARAMS, params2, delegationSubject));
-	} catch ($PrivilegedActionException&) {
-		$var($PrivilegedActionException, pe, $catch());
+	} catch ($PrivilegedActionException& pe) {
 		$var($Exception, e, extractException(pe));
 		if ($instanceOf($ReflectionException, e)) {
 			$throw($cast($ReflectionException, e));
@@ -679,8 +659,7 @@ $ObjectInstance* RMIConnectionImpl::createMBean($String* className, $ObjectName*
 			$nc(RMIConnectionImpl::logger)->debug("createMBean(String,ObjectName,ObjectName,Object[],String[])"_s, $$concat(var$0, $(strings(signature))));
 		}
 		return $cast($ObjectInstance, doPrivilegedOperation(RMIConnectionImpl::CREATE_MBEAN_LOADER_PARAMS, params2, delegationSubject));
-	} catch ($PrivilegedActionException&) {
-		$var($PrivilegedActionException, pe, $catch());
+	} catch ($PrivilegedActionException& pe) {
 		$var($Exception, e, extractException(pe));
 		if ($instanceOf($ReflectionException, e)) {
 			$throw($cast($ReflectionException, e));
@@ -716,8 +695,7 @@ void RMIConnectionImpl::unregisterMBean($ObjectName* name, $Subject* delegationS
 			$nc(RMIConnectionImpl::logger)->debug("unregisterMBean"_s, $$str({"connectionId="_s, this->connectionId, ", name="_s, name}));
 		}
 		doPrivilegedOperation(RMIConnectionImpl::UNREGISTER_MBEAN, params, delegationSubject);
-	} catch ($PrivilegedActionException&) {
-		$var($PrivilegedActionException, pe, $catch());
+	} catch ($PrivilegedActionException& pe) {
 		$var($Exception, e, extractException(pe));
 		if ($instanceOf($InstanceNotFoundException, e)) {
 			$throw($cast($InstanceNotFoundException, e));
@@ -741,8 +719,7 @@ $ObjectInstance* RMIConnectionImpl::getObjectInstance($ObjectName* name, $Subjec
 			$nc(RMIConnectionImpl::logger)->debug("getObjectInstance"_s, $$str({"connectionId="_s, this->connectionId, ", name="_s, name}));
 		}
 		return $cast($ObjectInstance, doPrivilegedOperation(RMIConnectionImpl::GET_OBJECT_INSTANCE, params, delegationSubject));
-	} catch ($PrivilegedActionException&) {
-		$var($PrivilegedActionException, pe, $catch());
+	} catch ($PrivilegedActionException& pe) {
 		$var($Exception, e, extractException(pe));
 		if ($instanceOf($InstanceNotFoundException, e)) {
 			$throw($cast($InstanceNotFoundException, e));
@@ -773,8 +750,7 @@ $Set* RMIConnectionImpl::queryMBeans($ObjectName* name, $MarshalledObject* query
 			$nc(RMIConnectionImpl::logger)->debug("queryMBeans"_s, $$str({"connectionId="_s, this->connectionId, ", name="_s, name, ", query="_s, query}));
 		}
 		return $cast($Set, $RMIConnector$Util::cast($(doPrivilegedOperation(RMIConnectionImpl::QUERY_MBEANS, params, delegationSubject))));
-	} catch ($PrivilegedActionException&) {
-		$var($PrivilegedActionException, pe, $catch());
+	} catch ($PrivilegedActionException& pe) {
 		$var($Exception, e, extractException(pe));
 		if ($instanceOf($IOException, e)) {
 			$throw($cast($IOException, e));
@@ -802,8 +778,7 @@ $Set* RMIConnectionImpl::queryNames($ObjectName* name, $MarshalledObject* query,
 			$nc(RMIConnectionImpl::logger)->debug("queryNames"_s, $$str({"connectionId="_s, this->connectionId, ", name="_s, name, ", query="_s, query}));
 		}
 		return $cast($Set, $RMIConnector$Util::cast($(doPrivilegedOperation(RMIConnectionImpl::QUERY_NAMES, params, delegationSubject))));
-	} catch ($PrivilegedActionException&) {
-		$var($PrivilegedActionException, pe, $catch());
+	} catch ($PrivilegedActionException& pe) {
 		$var($Exception, e, extractException(pe));
 		if ($instanceOf($IOException, e)) {
 			$throw($cast($IOException, e));
@@ -818,8 +793,7 @@ bool RMIConnectionImpl::isRegistered($ObjectName* name, $Subject* delegationSubj
 	try {
 		$var($ObjectArray, params, $new($ObjectArray, {$of(name)}));
 		return $nc(($cast($Boolean, $(doPrivilegedOperation(RMIConnectionImpl::IS_REGISTERED, params, delegationSubject)))))->booleanValue();
-	} catch ($PrivilegedActionException&) {
-		$var($PrivilegedActionException, pe, $catch());
+	} catch ($PrivilegedActionException& pe) {
 		$var($Exception, e, extractException(pe));
 		if ($instanceOf($IOException, e)) {
 			$throw($cast($IOException, e));
@@ -837,8 +811,7 @@ $Integer* RMIConnectionImpl::getMBeanCount($Subject* delegationSubject) {
 			$nc(RMIConnectionImpl::logger)->debug("getMBeanCount"_s, $$str({"connectionId="_s, this->connectionId}));
 		}
 		return $cast($Integer, doPrivilegedOperation(RMIConnectionImpl::GET_MBEAN_COUNT, params, delegationSubject));
-	} catch ($PrivilegedActionException&) {
-		$var($PrivilegedActionException, pe, $catch());
+	} catch ($PrivilegedActionException& pe) {
 		$var($Exception, e, extractException(pe));
 		if ($instanceOf($IOException, e)) {
 			$throw($cast($IOException, e));
@@ -859,8 +832,7 @@ $Object* RMIConnectionImpl::getAttribute($ObjectName* name, $String* attribute, 
 			$nc(RMIConnectionImpl::logger)->debug("getAttribute"_s, $$str({"connectionId="_s, this->connectionId, ", name="_s, name, ", attribute="_s, attribute}));
 		}
 		return $of(doPrivilegedOperation(RMIConnectionImpl::GET_ATTRIBUTE, params, delegationSubject));
-	} catch ($PrivilegedActionException&) {
-		$var($PrivilegedActionException, pe, $catch());
+	} catch ($PrivilegedActionException& pe) {
 		$var($Exception, e, extractException(pe));
 		if ($instanceOf($MBeanException, e)) {
 			$throw($cast($MBeanException, e));
@@ -894,8 +866,7 @@ $AttributeList* RMIConnectionImpl::getAttributes($ObjectName* name, $StringArray
 			$nc(RMIConnectionImpl::logger)->debug("getAttributes"_s, $$concat(var$0, $(strings(attributes))));
 		}
 		return $cast($AttributeList, doPrivilegedOperation(RMIConnectionImpl::GET_ATTRIBUTES, params, delegationSubject));
-	} catch ($PrivilegedActionException&) {
-		$var($PrivilegedActionException, pe, $catch());
+	} catch ($PrivilegedActionException& pe) {
 		$var($Exception, e, extractException(pe));
 		if ($instanceOf($InstanceNotFoundException, e)) {
 			$throw($cast($InstanceNotFoundException, e));
@@ -930,8 +901,7 @@ void RMIConnectionImpl::setAttribute($ObjectName* name, $MarshalledObject* attri
 			$nc(RMIConnectionImpl::logger)->debug("setAttribute"_s, $$concat(var$0, $($nc(attr)->getName())));
 		}
 		doPrivilegedOperation(RMIConnectionImpl::SET_ATTRIBUTE, params, delegationSubject);
-	} catch ($PrivilegedActionException&) {
-		$var($PrivilegedActionException, pe, $catch());
+	} catch ($PrivilegedActionException& pe) {
 		$var($Exception, e, extractException(pe));
 		if ($instanceOf($InstanceNotFoundException, e)) {
 			$throw($cast($InstanceNotFoundException, e));
@@ -974,8 +944,7 @@ $AttributeList* RMIConnectionImpl::setAttributes($ObjectName* name, $MarshalledO
 			$nc(RMIConnectionImpl::logger)->debug("setAttributes"_s, $$concat(var$0, $($RMIConnector::getAttributesNames(attrlist))));
 		}
 		return $cast($AttributeList, doPrivilegedOperation(RMIConnectionImpl::SET_ATTRIBUTES, params, delegationSubject));
-	} catch ($PrivilegedActionException&) {
-		$var($PrivilegedActionException, pe, $catch());
+	} catch ($PrivilegedActionException& pe) {
 		$var($Exception, e, extractException(pe));
 		if ($instanceOf($InstanceNotFoundException, e)) {
 			$throw($cast($InstanceNotFoundException, e));
@@ -1014,8 +983,7 @@ $Object* RMIConnectionImpl::invoke($ObjectName* name, $String* operationName, $M
 			$nc(RMIConnectionImpl::logger)->debug("invoke"_s, $$concat(var$0, $(strings(signature))));
 		}
 		return $of(doPrivilegedOperation(RMIConnectionImpl::INVOKE, params2, delegationSubject));
-	} catch ($PrivilegedActionException&) {
-		$var($PrivilegedActionException, pe, $catch());
+	} catch ($PrivilegedActionException& pe) {
 		$var($Exception, e, extractException(pe));
 		if ($instanceOf($InstanceNotFoundException, e)) {
 			$throw($cast($InstanceNotFoundException, e));
@@ -1042,8 +1010,7 @@ $String* RMIConnectionImpl::getDefaultDomain($Subject* delegationSubject) {
 			$nc(RMIConnectionImpl::logger)->debug("getDefaultDomain"_s, $$str({"connectionId="_s, this->connectionId}));
 		}
 		return $cast($String, doPrivilegedOperation(RMIConnectionImpl::GET_DEFAULT_DOMAIN, params, delegationSubject));
-	} catch ($PrivilegedActionException&) {
-		$var($PrivilegedActionException, pe, $catch());
+	} catch ($PrivilegedActionException& pe) {
 		$var($Exception, e, extractException(pe));
 		if ($instanceOf($IOException, e)) {
 			$throw($cast($IOException, e));
@@ -1061,8 +1028,7 @@ $StringArray* RMIConnectionImpl::getDomains($Subject* delegationSubject) {
 			$nc(RMIConnectionImpl::logger)->debug("getDomains"_s, $$str({"connectionId="_s, this->connectionId}));
 		}
 		return $cast($StringArray, doPrivilegedOperation(RMIConnectionImpl::GET_DOMAINS, params, delegationSubject));
-	} catch ($PrivilegedActionException&) {
-		$var($PrivilegedActionException, pe, $catch());
+	} catch ($PrivilegedActionException& pe) {
 		$var($Exception, e, extractException(pe));
 		if ($instanceOf($IOException, e)) {
 			$throw($cast($IOException, e));
@@ -1081,8 +1047,7 @@ $MBeanInfo* RMIConnectionImpl::getMBeanInfo($ObjectName* name, $Subject* delegat
 			$nc(RMIConnectionImpl::logger)->debug("getMBeanInfo"_s, $$str({"connectionId="_s, this->connectionId, ", name="_s, name}));
 		}
 		return $cast($MBeanInfo, doPrivilegedOperation(RMIConnectionImpl::GET_MBEAN_INFO, params, delegationSubject));
-	} catch ($PrivilegedActionException&) {
-		$var($PrivilegedActionException, pe, $catch());
+	} catch ($PrivilegedActionException& pe) {
 		$var($Exception, e, extractException(pe));
 		if ($instanceOf($InstanceNotFoundException, e)) {
 			$throw($cast($InstanceNotFoundException, e));
@@ -1113,8 +1078,7 @@ bool RMIConnectionImpl::isInstanceOf($ObjectName* name, $String* className, $Sub
 			$nc(RMIConnectionImpl::logger)->debug("isInstanceOf"_s, $$str({"connectionId="_s, this->connectionId, ", name="_s, name, ", className="_s, className}));
 		}
 		return $nc(($cast($Boolean, $(doPrivilegedOperation(RMIConnectionImpl::IS_INSTANCE_OF, params, delegationSubject)))))->booleanValue();
-	} catch ($PrivilegedActionException&) {
-		$var($PrivilegedActionException, pe, $catch());
+	} catch ($PrivilegedActionException& pe) {
 		$var($Exception, e, extractException(pe));
 		if ($instanceOf($InstanceNotFoundException, e)) {
 			$throw($cast($InstanceNotFoundException, e));
@@ -1164,13 +1128,11 @@ $IntegerArray* RMIConnectionImpl::addNotificationListeners($ObjectNameArray* nam
 			}), $nc(sbjs)->get(i)))));
 		}
 		return ids;
-	} catch ($Exception&) {
-		$var($Exception, e, $catch());
+	} catch ($Exception& e) {
 		for (int32_t j = 0; j < i; ++j) {
 			try {
 				$nc($(getServerNotifFwd()))->removeNotificationListener(names->get(j), ids->get(j));
-			} catch ($Exception&) {
-				$catch();
+			} catch ($Exception& eee) {
 			}
 		}
 		if ($instanceOf($PrivilegedActionException, e)) {
@@ -1207,7 +1169,6 @@ void RMIConnectionImpl::addNotificationListener($ObjectName* name, $ObjectName* 
 	if (debug) {
 		$nc(RMIConnectionImpl::logger)->debug("addNotificationListener(ObjectName,ObjectName,NotificationFilter,Object)"_s, $$str({"connectionId="_s, this->connectionId, " unwrapping handback with target extended ClassLoader."_s}));
 	}
-	$load($Object);
 	$assign(handbackValue, unwrap(handback, targetCl, this->defaultClassLoader, $Object::class$, delegationSubject));
 	try {
 		$var($ObjectArray, params, $new($ObjectArray, {
@@ -1220,8 +1181,7 @@ void RMIConnectionImpl::addNotificationListener($ObjectName* name, $ObjectName* 
 			$nc(RMIConnectionImpl::logger)->debug("addNotificationListener(ObjectName,ObjectName,NotificationFilter,Object)"_s, $$str({"connectionId="_s, this->connectionId, ", name="_s, name, ", listenerName="_s, listener, ", filter="_s, filterValue, ", handback="_s, handbackValue}));
 		}
 		doPrivilegedOperation(RMIConnectionImpl::ADD_NOTIFICATION_LISTENER_OBJECTNAME, params, delegationSubject);
-	} catch ($PrivilegedActionException&) {
-		$var($PrivilegedActionException, pe, $catch());
+	} catch ($PrivilegedActionException& pe) {
 		$var($Exception, e, extractException(pe));
 		if ($instanceOf($InstanceNotFoundException, e)) {
 			$throw($cast($InstanceNotFoundException, e));
@@ -1253,8 +1213,7 @@ void RMIConnectionImpl::removeNotificationListeners($ObjectName* name, $IntegerA
 			$nc(RMIConnectionImpl::logger)->debug("removeNotificationListener(ObjectName,Integer[])"_s, $$concat(var$0, $(objects(listenerIDs))));
 		}
 		doPrivilegedOperation(RMIConnectionImpl::REMOVE_NOTIFICATION_LISTENER, params, delegationSubject);
-	} catch ($PrivilegedActionException&) {
-		$var($PrivilegedActionException, pe, $catch());
+	} catch ($PrivilegedActionException& pe) {
 		$var($Exception, e, extractException(pe));
 		if ($instanceOf($InstanceNotFoundException, e)) {
 			$throw($cast($InstanceNotFoundException, e));
@@ -1282,8 +1241,7 @@ void RMIConnectionImpl::removeNotificationListener($ObjectName* name, $ObjectNam
 			$nc(RMIConnectionImpl::logger)->debug("removeNotificationListener(ObjectName,ObjectName)"_s, $$str({"connectionId="_s, this->connectionId, ", name="_s, name, ", listenerName="_s, listener}));
 		}
 		doPrivilegedOperation(RMIConnectionImpl::REMOVE_NOTIFICATION_LISTENER_OBJECTNAME, params, delegationSubject);
-	} catch ($PrivilegedActionException&) {
-		$var($PrivilegedActionException, pe, $catch());
+	} catch ($PrivilegedActionException& pe) {
 		$var($Exception, e, extractException(pe));
 		if ($instanceOf($InstanceNotFoundException, e)) {
 			$throw($cast($InstanceNotFoundException, e));
@@ -1314,7 +1272,6 @@ void RMIConnectionImpl::removeNotificationListener($ObjectName* name, $ObjectNam
 	if (debug) {
 		$nc(RMIConnectionImpl::logger)->debug("removeNotificationListener(ObjectName,ObjectName,NotificationFilter,Object)"_s, $$str({"connectionId="_s, this->connectionId, " unwrapping handback with target extended ClassLoader."_s}));
 	}
-	$load($Object);
 	$assign(handbackValue, unwrap(handback, targetCl, this->defaultClassLoader, $Object::class$, delegationSubject));
 	try {
 		$var($ObjectArray, params, $new($ObjectArray, {
@@ -1327,8 +1284,7 @@ void RMIConnectionImpl::removeNotificationListener($ObjectName* name, $ObjectNam
 			$nc(RMIConnectionImpl::logger)->debug("removeNotificationListener(ObjectName,ObjectName,NotificationFilter,Object)"_s, $$str({"connectionId="_s, this->connectionId, ", name="_s, name, ", listenerName="_s, listener, ", filter="_s, filterValue, ", handback="_s, handbackValue}));
 		}
 		doPrivilegedOperation(RMIConnectionImpl::REMOVE_NOTIFICATION_LISTENER_OBJECTNAME_FILTER_HANDBACK, params, delegationSubject);
-	} catch ($PrivilegedActionException&) {
-		$var($PrivilegedActionException, pe, $catch());
+	} catch ($PrivilegedActionException& pe) {
 		$var($Exception, e, extractException(pe));
 		if ($instanceOf($InstanceNotFoundException, e)) {
 			$throw($cast($InstanceNotFoundException, e));
@@ -1379,8 +1335,8 @@ $NotificationResult* RMIConnectionImpl::fetchNotifications(int64_t clientSequenc
 				return$1 = true;
 				goto $finally;
 			}
-		} catch ($Throwable&) {
-			$assign(var$0, $catch());
+		} catch ($Throwable& var$3) {
+			$assign(var$0, var$3);
 		} $finally: {
 			$nc(this->serverCommunicatorAdmin)->rspOutgoing();
 		}
@@ -1404,8 +1360,7 @@ $ClassLoader* RMIConnectionImpl::getClassLoader($ObjectName* name) {
 	try {
 		$var($PrivilegedExceptionAction, var$0, static_cast<$PrivilegedExceptionAction*>($new($RMIConnectionImpl$5, this, name)));
 		return $cast($ClassLoader, $AccessController::doPrivileged(var$0, $(withPermissions($$new($PermissionArray, {static_cast<$Permission*>($$new($MBeanPermission, "*"_s, "getClassLoader"_s))})))));
-	} catch ($PrivilegedActionException&) {
-		$var($PrivilegedActionException, pe, $catch());
+	} catch ($PrivilegedActionException& pe) {
 		$throw($cast($InstanceNotFoundException, $(extractException(pe))));
 	}
 	$shouldNotReachHere();
@@ -1417,8 +1372,7 @@ $ClassLoader* RMIConnectionImpl::getClassLoaderFor($ObjectName* name) {
 	try {
 		$var($PrivilegedExceptionAction, var$0, static_cast<$PrivilegedExceptionAction*>($new($RMIConnectionImpl$6, this, name)));
 		return $cast($ClassLoader, $AccessController::doPrivileged(var$0, $(withPermissions($$new($PermissionArray, {static_cast<$Permission*>($$new($MBeanPermission, "*"_s, "getClassLoaderFor"_s))})))));
-	} catch ($PrivilegedActionException&) {
-		$var($PrivilegedActionException, pe, $catch());
+	} catch ($PrivilegedActionException& pe) {
 		$throw($cast($InstanceNotFoundException, $(extractException(pe))));
 	}
 	$shouldNotReachHere();
@@ -1448,8 +1402,7 @@ $Object* RMIConnectionImpl::doPrivilegedOperation(int32_t operation, $ObjectArra
 				if (reqACC == nullptr) {
 					try {
 						return $of(op->run());
-					} catch ($Exception&) {
-						$var($Exception, e, $catch());
+					} catch ($Exception& e) {
 						if ($instanceOf($RuntimeException, e)) {
 							$throw($cast($RuntimeException, e));
 						}
@@ -1460,12 +1413,11 @@ $Object* RMIConnectionImpl::doPrivilegedOperation(int32_t operation, $ObjectArra
 					return$1 = true;
 					goto $finally;
 				}
-			} catch ($Error&) {
-				$var($Error, e, $catch());
+			} catch ($Error& e) {
 				$throwNew($JMXServerErrorException, $(e->toString()), e);
 			}
-		} catch ($Throwable&) {
-			$assign(var$0, $catch());
+		} catch ($Throwable& var$3) {
+			$assign(var$0, var$3);
 		} $finally: {
 			$nc(this->serverCommunicatorAdmin)->rspOutgoing();
 		}
@@ -1625,8 +1577,8 @@ $Object* RMIConnectionImpl::unwrap($MarshalledObject* mo, $ClassLoader* cl, $Cla
 					return$1 = true;
 					goto $finally;
 				}
-			} catch ($Throwable&) {
-				$assign(var$0, $catch());
+			} catch ($Throwable& var$3) {
+				$assign(var$0, var$3);
 			} $finally: {
 				$AccessController::doPrivileged(static_cast<$PrivilegedExceptionAction*>($$new($RMIConnectionImpl$SetCcl, old)));
 			}
@@ -1637,8 +1589,7 @@ $Object* RMIConnectionImpl::unwrap($MarshalledObject* mo, $ClassLoader* cl, $Cla
 				return var$2;
 			}
 		}
-	} catch ($PrivilegedActionException&) {
-		$var($PrivilegedActionException, pe, $catch());
+	} catch ($PrivilegedActionException& pe) {
 		$var($Exception, e, extractException(pe));
 		if ($instanceOf($IOException, e)) {
 			$throw($cast($IOException, e));
@@ -1648,8 +1599,7 @@ $Object* RMIConnectionImpl::unwrap($MarshalledObject* mo, $ClassLoader* cl, $Cla
 		}
 		$nc(RMIConnectionImpl::logger)->warning("unwrap"_s, $$str({"Failed to unmarshall object: "_s, e}));
 		$nc(RMIConnectionImpl::logger)->debug("unwrap"_s, static_cast<$Throwable*>(e));
-	} catch ($ClassNotFoundException&) {
-		$var($ClassNotFoundException, ex, $catch());
+	} catch ($ClassNotFoundException& ex) {
 		$nc(RMIConnectionImpl::logger)->warning("unwrap"_s, $$str({"Failed to unmarshall object: "_s, ex}));
 		$nc(RMIConnectionImpl::logger)->debug("unwrap"_s, static_cast<$Throwable*>(ex));
 		$throwNew($UnmarshalException, $(ex->toString()), ex);
@@ -1666,8 +1616,7 @@ $Object* RMIConnectionImpl::unwrap($MarshalledObject* mo, $ClassLoader* cl1, $Cl
 	try {
 		$var($ClassLoader, orderCL, $cast($ClassLoader, $AccessController::doPrivileged(static_cast<$PrivilegedExceptionAction*>($$new($RMIConnectionImpl$7, this, cl1, cl2)))));
 		return $of(unwrap(mo, orderCL, wrappedClass, delegationSubject));
-	} catch ($PrivilegedActionException&) {
-		$var($PrivilegedActionException, pe, $catch());
+	} catch ($PrivilegedActionException& pe) {
 		$var($Exception, e, extractException(pe));
 		if ($instanceOf($IOException, e)) {
 			$throw($cast($IOException, e));

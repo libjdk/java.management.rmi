@@ -1,13 +1,6 @@
 #include <javax/management/remote/rmi/RMIIIOPServerImpl.h>
 
-#include <java/lang/Class.h>
-#include <java/lang/ClassInfo.h>
-#include <java/lang/CompoundAttribute.h>
-#include <java/lang/MethodInfo.h>
-#include <java/lang/String.h>
 #include <java/lang/UnsupportedOperationException.h>
-#include <java/lang/reflect/Constructor.h>
-#include <java/lang/reflect/Method.h>
 #include <java/rmi/Remote.h>
 #include <java/util/Map.h>
 #include <javax/management/remote/rmi/RMIConnection.h>
@@ -29,11 +22,11 @@ namespace javax {
 	namespace management {
 		namespace remote {
 			namespace rmi {
+
 $CompoundAttribute _RMIIIOPServerImpl_Annotations_[] = {
 	{"Ljava/lang/Deprecated;", nullptr},
 	{}
 };
-
 
 $MethodInfo _RMIIIOPServerImpl_MethodInfo_[] = {
 	{"<init>", "(Ljava/util/Map;)V", "(Ljava/util/Map<Ljava/lang/String;*>;)V", $PUBLIC, $method(static_cast<void(RMIIIOPServerImpl::*)($Map*)>(&RMIIIOPServerImpl::init$)), "java.io.IOException"},
