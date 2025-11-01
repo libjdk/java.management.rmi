@@ -40,7 +40,6 @@ class $export RMIServerImpl_Stub : public ::java::rmi::server::RemoteStub, publi
 	$class(RMIServerImpl_Stub, 0, ::java::rmi::server::RemoteStub, ::javax::management::remote::rmi::RMIServer)
 public:
 	RMIServerImpl_Stub();
-	virtual ::java::lang::Object0* toObject0$() const override {return (::java::lang::Object0*)(void*)this;}
 	virtual $Object* clone() override;
 	virtual bool equals(Object$* arg0) override;
 	virtual void finalize() override;

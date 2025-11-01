@@ -53,7 +53,6 @@ namespace javax {
 class $import RMIConnection : public ::java::io::Closeable, public ::java::rmi::Remote {
 	$interface(RMIConnection, $NO_CLASS_INIT, ::java::io::Closeable, ::java::rmi::Remote)
 public:
-	virtual ::java::lang::Object0* toObject0$() const override {return (::java::lang::Object0*)(void*)this;}
 	virtual void addNotificationListener(::javax::management::ObjectName* name, ::javax::management::ObjectName* listener, ::java::rmi::MarshalledObject* filter, ::java::rmi::MarshalledObject* handback, ::javax::security::auth::Subject* delegationSubject) {}
 	virtual $Array<::java::lang::Integer>* addNotificationListeners($Array<::javax::management::ObjectName>* names, $Array<::java::rmi::MarshalledObject>* filters, $Array<::javax::security::auth::Subject>* delegationSubjects) {return nullptr;}
 	virtual $Object* clone() override;

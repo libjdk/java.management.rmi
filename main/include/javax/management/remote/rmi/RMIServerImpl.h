@@ -77,7 +77,6 @@ class $import RMIServerImpl : public ::java::io::Closeable, public ::javax::mana
 	$class(RMIServerImpl, 0, ::java::io::Closeable, ::javax::management::remote::rmi::RMIServer)
 public:
 	RMIServerImpl();
-	virtual ::java::lang::Object0* toObject0$() const override {return (::java::lang::Object0*)(void*)this;}
 	virtual $Object* clone() override;
 	virtual bool equals(Object$* arg0) override;
 	virtual void finalize() override;

@@ -69,7 +69,6 @@ class $import RMIConnectionImpl_Stub : public ::java::rmi::server::RemoteStub, p
 	$class(RMIConnectionImpl_Stub, 0, ::java::rmi::server::RemoteStub, ::javax::management::remote::rmi::RMIConnection)
 public:
 	RMIConnectionImpl_Stub();
-	virtual ::java::lang::Object0* toObject0$() const override {return (::java::lang::Object0*)(void*)this;}
 	virtual $Object* clone() override;
 	virtual bool equals(Object$* arg0) override;
 	virtual void finalize() override;
